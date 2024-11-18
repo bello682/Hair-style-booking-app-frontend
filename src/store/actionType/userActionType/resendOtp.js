@@ -1,0 +1,4 @@
+// resendOtpActionTypes.js
+export const RESEND_OTP_REQUEST = "RESEND_OTP_REQUEST";
+export const RESEND_OTP_SUCCESS = "RESEND_OTP_SUCCESS";
+export const RESEND_OTP_FAILURE = "RESEND_OTP_FAILURE";

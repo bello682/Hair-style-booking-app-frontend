@@ -1,0 +1,97 @@
+.slider_general_wrapper {
+	width: 50%;
+	height: 100%;
+	padding: 0 0 4rem 0;
+}
+
+/* .carousel_wrapper {
+	width: 60%; 
+	margin: auto;
+	padding-top: 2rem;
+    } */
+
+.carousel-container {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	border: 2rem solid #081b29;
+	border-radius: 10rem;
+	/* padding: 5rem 0; */
+}
+
+.carousel-slider {
+	display: flex;
+	transition: transform 2s ease-in-out;
+	width: 100%;
+}
+
+.carousel-slide {
+	flex: 0 0 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.carousel-image {
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+
+.carousel-controls {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 10px;
+}
+
+.carousel-btn {
+	background: rgba(0, 0, 0, 0.5);
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-size: 24px;
+	padding: 10px;
+	transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+	.slider_general_wrapper {
+		max-width: 1000px;
+	}
+
+	/* Stack Carousel above the text on mobile */
+	/* .home_View {
+		flex-direction: column-reverse; 
+		align-items: center;
+		text-align: center;
+	} */
+
+	/* .carousel_wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 1rem;
+	} */
+
+	/* Hide Carousel entirely on very small screens */
+	@media (max-width: 480px) {
+		.carousel_wrapper {
+			display: none;
+		}
+	}
+}

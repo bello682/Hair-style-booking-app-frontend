@@ -1,0 +1,156 @@
+/* ======================================================================================================================== */
+/* female uploads */
+/* ======================================================================================================================== */
+
+.female_upload_wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 100px auto;
+}
+
+.female-uploads {
+	max-width: 600px;
+	width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+	background: #f5f5f5;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+	animation: slide-down 0.6s ease;
+}
+
+.female-uploads h2 {
+	color: black;
+	text-align: center;
+}
+
+.female-uploads .image-input {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 15px;
+	animation: fade-in 0.5s ease forwards;
+}
+
+.female-uploads .input-field,
+.female-uploads .file-upload {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	width: 100%;
+	color: black;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.female-uploads .input-field:focus,
+.female-uploads .file-upload:focus {
+	border-color: #007bff;
+	box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+	animation: pulse 1.2s infinite;
+}
+
+.female-uploads .error {
+	border-color: #ff4d4d;
+}
+
+.female-uploads .error-text {
+	color: #ff4d4d;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+.female-uploads .add-image-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 5px;
+	background-color: transparent;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.female-uploads .add-image-btn:hover {
+	/* background-color: #0056b3; */
+	background-color: black;
+	color: white;
+}
+
+.female-uploads .add-image-btn-plus-sign {
+	font-size: 25px;
+	font-weight: bolder;
+	padding-right: 10px;
+	color: red;
+}
+
+.female-uploads .add-image-btn:hover .add-image-btn-plus-sign {
+	color: white;
+}
+
+.female-uploads .submit-btn {
+	width: 100%;
+	padding: 10px;
+	/* background-color: #007bff; */
+	background-color: black;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.female-uploads .submit-btn:hover {
+	background-color: rgb(36, 34, 34);
+}
+
+.female-uploads .submit-btn.loading {
+	background-color: #6c757d;
+	cursor: not-allowed;
+}
+
+.fade-in {
+	opacity: 0;
+	animation: fade-in 0.5s ease forwards;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-down {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+	}
+	50% {
+		box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.female-uploads {
+		width: 90%;
+	}
+}

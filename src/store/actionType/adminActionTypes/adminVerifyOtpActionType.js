@@ -1,0 +1,4 @@
+// src/store/actionTypes/verifyOtpActionTypes.js
+export const ADMIN_VERIFY_OTP_REQUEST = "ADMIN_VERIFY_OTP_REQUEST";
+export const ADMIN_VERIFY_OTP_SUCCESS = "ADMIN_VERIFY_OTP_SUCCESS";
+export const ADMIN_VERIFY_OTP_FAILURE = "ADMIN_VERIFY_OTP_FAILURE";
