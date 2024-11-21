@@ -531,7 +531,8 @@ body {
 
 	.slider_general_wrapper {
 		order: -1; /* Move carousel to the top */
-		margin-bottom: 2rem; /* Add spacing between carousel and content */
+		margin-bottom: 2rem; /* Add spacing between carousel and content*/
+		margin-top: 5rem !important;
 	}
 
 	.home_view_sub {
@@ -551,10 +552,11 @@ body {
 
 	.home_hover {
 		position: absolute;
-		top: 180px;
-		right: 60px;
-		width: 750px;
-		height: 60%;
+		top: 100px;
+		right: 0;
+		/* width: 750px; */
+		width: 100%;
+		height: 65%;
 		background: transparent;
 		transition: 3s;
 		animation: manipActiveHover 0.1s forwards;
