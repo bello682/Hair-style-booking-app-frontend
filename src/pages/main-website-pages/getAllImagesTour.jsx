@@ -14,6 +14,7 @@ const GetAllImagesTour = () => {
 	const { loadingGetAllImages, allImages, errorGetAllImages } = useSelector(
 		(state) => state.getallUploadStateReducer
 	);
+	const isVerified = localStorage.getItem("isVerified");
 
 	// States for data
 	const [dataMale, setDataMale] = useState([]);
@@ -81,9 +82,9 @@ const GetAllImagesTour = () => {
 		setSelectedImage(null);
 	};
 
-	const handleBooking = () => {
-		navigation("/booking/hair-service");
-	};
+	// const handleBooking = () => {
+	// 	navigation("/booking/hair-service");
+	// };
 
 	// Handle loading and error states
 	if (loadingGetAllImages) {
@@ -102,6 +103,14 @@ const GetAllImagesTour = () => {
 	if (!allImages || !allImages || allImages.length === 0) {
 		return <div>No images found.</div>;
 	}
+
+	const handleBooking = () => {
+		if (isVerified) {
+			navigation("/booking/hair-service");
+		} else {
+			navigation("/user-signUp");
+		}
+	};
 
 	return (
 		<div className="container--Images--upload">
