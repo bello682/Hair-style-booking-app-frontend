@@ -3,6 +3,8 @@ import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/adminActionRequest-ActionTypes";
 import { error, success } from "../../../../src/notifivations/notification";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 // Accept booking request
 export const acceptBookingRequestByAdmin =
 	(adminId, bookingRequestId) => async (dispatch) => {
@@ -10,7 +12,7 @@ export const acceptBookingRequestByAdmin =
 		try {
 			const token = localStorage.getItem("token");
 			const response = await axios.put(
-				`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/booking/accept/${adminId}/${bookingRequestId}`,
+				`${BASE_URL}/HairStyleAdmin/booking/accept/${adminId}/${bookingRequestId}`,
 				{ bookingRequestId },
 				{
 					headers: { Authorization: `Bearer ${token}` },
@@ -49,7 +51,7 @@ export const rejectBookingRequestByAdmin =
 		try {
 			const token = localStorage.getItem("token");
 			const res = await axios.put(
-				`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/booking/reject/${adminId}/${bookingRequestId}`,
+				`${BASE_URL}/HairStyleAdmin/booking/reject/${adminId}/${bookingRequestId}`,
 				{ bookingRequestId },
 				{ headers: { Authorization: `Bearer ${token}` } }
 			);
@@ -89,7 +91,7 @@ export const completeBookingRequestByAdmin =
 		try {
 			const token = localStorage.getItem("token");
 			const res = await axios.put(
-				`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/booking/complete/${adminId}/${bookingRequestId}`,
+				`${BASE_URL}/HairStyleAdmin/booking/complete/${adminId}/${bookingRequestId}`,
 				{ bookingRequestId },
 				{ headers: { Authorization: `Bearer ${token}` } }
 			);
@@ -128,7 +130,7 @@ export const deleteBookingRequestByAdmin =
 		try {
 			const token = localStorage.getItem("token");
 			const res = await axios.delete(
-				`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/booking/delete/${adminId}/${bookingRequestId}`,
+				`${BASE_URL}/HairStyleAdmin/booking/delete/${adminId}/${bookingRequestId}`,
 
 				{ headers: { Authorization: `Bearer ${token}` } }
 			);

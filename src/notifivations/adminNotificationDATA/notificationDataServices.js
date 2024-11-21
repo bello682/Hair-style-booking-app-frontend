@@ -1,13 +1,16 @@
 import axios from "axios";
 import { error, success } from "./../notification";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 // Fetch notifications
 export const fetchNotifications = async () => {
 	const token = localStorage.getItem("token");
 
 	try {
 		const response = await axios.get(
-			`${process.env.REACT_APP_BASE_URL}/notificationMessages/notifications/get`,
+			`${BASE_URL}/notificationMessages/notifications/get`,
 			{
 				headers: {
 					Authorization: `Bearer ${token}`, // Include the token in the request headers
@@ -34,7 +37,7 @@ export const createNotification = async (data) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/notificationMessages/notifications`,
+			`${BASE_URL}/notificationMessages/notifications`,
 			data,
 			{
 				headers: {
@@ -67,7 +70,7 @@ export const deleteNotification = async (id) => {
 
 	try {
 		const response = await axios.delete(
-			`${process.env.REACT_APP_BASE_URL}/notificationMessages/notifications/${id}`,
+			`${BASE_URL}/notificationMessages/notifications/${id}`,
 			{
 				headers: {
 					Authorization: `Bearer ${token}`, // Include the token in the request headers

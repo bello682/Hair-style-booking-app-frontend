@@ -2,12 +2,15 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/registerActionType";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 export const registerAdmin = (userData) => async (dispatch) => {
 	dispatch({ type: actionTypes.REGISTER_ADMIN_REQUEST });
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/register`,
+			`${BASE_URL}/HairStyleAdmin/register`,
 			userData
 		);
 

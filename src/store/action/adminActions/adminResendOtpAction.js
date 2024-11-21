@@ -1,6 +1,8 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/adminResendActionType";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 const resendAdminOtpRequest = () => ({
 	type: actionTypes.RESEND_ADMIN_OTP_REQUEST,
 });
@@ -21,7 +23,7 @@ export const adminResendOtp = (email) => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/resendAmin-otp`,
+			`${BASE_URL}/HairStyleAdmin/resendAmin-otp`,
 			{ email },
 			{
 				headers: {

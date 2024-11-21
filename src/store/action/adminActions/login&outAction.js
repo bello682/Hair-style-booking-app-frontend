@@ -2,14 +2,17 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/login&outActionType";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 export const loginAdminAction = (email, password) => async (dispatch) => {
 	dispatch({ type: actionTypes.ADMIN_LOGIN_REQUEST });
 
 	try {
-		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/login`,
-			{ email, password }
-		);
+		const response = await axios.post(`${BASE_URL}/HairStyleAdmin/login`, {
+			email,
+			password,
+		});
 		const { user, token } = response.data;
 
 		dispatch({
@@ -31,7 +34,7 @@ export const logoutAdmin = () => async (dispatch) => {
 	try {
 		const token = localStorage.getItem("token");
 		await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/logout`,
+			`${BASE_URL}/HairStyleAdmin/logout`,
 			{},
 			{
 				headers: { Authorization: `Bearer ${token}` },

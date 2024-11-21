@@ -46,6 +46,9 @@ import {
 	setAccessToken,
 } from "../../../utils/authStorage";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 export const refreshTokenAction = () => async (dispatch) => {
 	dispatch({ type: actionTypes.REFRESH_TOKEN_REQUEST });
 
@@ -54,7 +57,7 @@ export const refreshTokenAction = () => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleUsers/refresh-token`,
+			`${BASE_URL}/HairStyleUsers/refresh-token`,
 			{ refreshToken },
 			{ headers: { "x-device-id": deviceId } }
 		);

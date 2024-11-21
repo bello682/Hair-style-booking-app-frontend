@@ -63,9 +63,11 @@ import store from "./../store/store"; // Replace with the actual path to your Re
 import { refreshTokenAction } from "./../store/action/userActions/refreshTokenAuthUser";
 import { getStoredAccessToken } from "./authStorage";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 // Set up base instance
 const axiosInstance = axios.create({
-	baseURL: process.env.REACT_APP_BASE_URL,
+	baseURL: BASE_URL,
 });
 
 // Add an interceptor for requests

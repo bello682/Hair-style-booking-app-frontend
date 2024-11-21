@@ -2,6 +2,8 @@ import axios from "axios";
 import * as actionTypes from "../../actionType/userActionType/resendOtp";
 import { getStoredDeviceId } from "../../../utils/authStorage";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 const resendOtpRequest = () => ({
 	type: actionTypes.RESEND_OTP_REQUEST,
 });
@@ -23,10 +25,9 @@ const deviceId = getStoredDeviceId(); // Function to retrieve the device ID
 export const resendOtp = (email) => async (dispatch) => {
 	dispatch(resendOtpRequest());
 	try {
-		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleUsers/resend-otp`,
-			{ email }
-		);
+		const response = await axios.post(`${BASE_URL}/HairStyleUsers/resend-otp`, {
+			email,
+		});
 		dispatch(resendOtpSuccess(response.data.message));
 
 		const { accessToken, refreshToken } = response.data;

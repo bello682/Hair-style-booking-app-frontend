@@ -3,12 +3,15 @@ import axios from "axios";
 import { error, success } from "../../../../src/notifivations/notification";
 import * as actionTypes from "../../actionType/userActionType/registerActionType";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 export const registerUser = (userData) => async (dispatch) => {
 	dispatch({ type: actionTypes.REGISTER_REQUEST });
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleUsers/register`,
+			`${BASE_URL}/HairStyleUsers/register`,
 			userData
 		);
 

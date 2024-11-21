@@ -3,6 +3,9 @@ import axios from "axios";
 import * as actionTypes from "../../actionType/userActionType/verifyUserOtpActionTypes";
 import { getStoredDeviceId } from "../../../utils/authStorage";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 export const verifyOtp = (otp) => async (dispatch) => {
 	dispatch({ type: actionTypes.VERIFY_OTP_REQUEST });
 
@@ -19,7 +22,7 @@ export const verifyOtp = (otp) => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleUsers/verify-otp`,
+			`${BASE_URL}/HairStyleUsers/verify-otp`,
 			{ otp }, // Only send OTP in the request body
 			{ headers: { Authorization: `Bearer ${token}`, "x-device-id": deviceId } } // Send token in headers
 		);

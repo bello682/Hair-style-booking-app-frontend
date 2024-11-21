@@ -183,6 +183,8 @@ body {
 	height: 100vh;
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	margin: auto;
 	padding: 0 10%;
 	gap: 2rem;
 }
@@ -473,6 +475,18 @@ body {
 		line-height: 3;
 	}
 
+	.home_view_sub {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: auto;
+		padding-top: 5rem !important;
+	}
+
+	.home_content {
+		/* padding-top: 12rem; */
+	}
+
 	.home_content h1 {
 		position: relative;
 		font-size: 40px;
@@ -487,6 +501,7 @@ body {
 		position: relative;
 		background: transparent;
 		margin-top: 3rem;
+		margin-bottom: 2rem !important;
 		display: flex;
 		justify-content: space-between;
 		width: 60%;

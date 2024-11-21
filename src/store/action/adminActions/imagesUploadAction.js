@@ -1,6 +1,9 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/imagesUploadActionTypes";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
+
 // Action to upload male images
 export const uploadMaleImages = (formData) => async (dispatch) => {
 	dispatch({ type: actionTypes.UPLOAD_MALE_IMAGES_REQUEST });
@@ -8,7 +11,7 @@ export const uploadMaleImages = (formData) => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/adminUploadImages/upload/male`,
+			`${BASE_URL}/adminUploadImages/upload/male`,
 			formData,
 			{
 				headers: {
@@ -37,7 +40,7 @@ export const uploadFemaleImages = (formData) => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/adminUploadImages/upload/female`,
+			`${BASE_URL}/adminUploadImages/upload/female`,
 			formData,
 			{
 				headers: {
@@ -65,7 +68,7 @@ export const uploadOtherImages = (formData) => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/adminUploadImages/upload/other`,
+			`${BASE_URL}/adminUploadImages/upload/other`,
 			formData,
 			{
 				headers: {
@@ -91,9 +94,7 @@ export const getAllImages = () => async (dispatch) => {
 	dispatch({ type: actionTypes.GET_ALL_IMAGES_REQUEST });
 
 	try {
-		const response = await axios.get(
-			`${process.env.REACT_APP_BASE_URL}/adminUploadImages/images`
-		);
+		const response = await axios.get(`${BASE_URL}/adminUploadImages/images`);
 		dispatch({
 			type: actionTypes.GET_ALL_IMAGES_SUCCESS,
 			payload: response.data,

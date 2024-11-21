@@ -2,6 +2,8 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/adminVerifyOtpActionType";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 export const adminVerifyOtp = (otp) => async (dispatch) => {
 	dispatch({ type: actionTypes.ADMIN_VERIFY_OTP_REQUEST });
 
@@ -17,7 +19,7 @@ export const adminVerifyOtp = (otp) => async (dispatch) => {
 
 	try {
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/HairStyleAdmin/verifyAdmin-otp`,
+			`${BASE_URL}/HairStyleAdmin/verifyAdmin-otp`,
 			{ otp }, // Only send OTP in the request body
 			{ headers: { Authorization: `Bearer ${existingToken}` } } // Send token in headers
 		);

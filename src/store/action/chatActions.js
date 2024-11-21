@@ -1,11 +1,13 @@
 import axios from "axios";
 import * as actionTypes from "../actionType/chatActiontype";
 
+const BASE_URL =
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 export const fetchConversation = (userId, adminId) => async (dispatch) => {
 	try {
 		dispatch({ type: actionTypes.FETCH_CONVERSATION_REQUEST });
 		const response = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/conversationalComplaint/conversation`,
+			`${BASE_URL}/conversationalComplaint/conversation`,
 			{ userId, adminId }
 		);
 
@@ -31,7 +33,7 @@ export const sendMessage =
 		dispatch({ type: actionTypes.SEND_MESSAGE_REQUEST });
 		try {
 			const response = await axios.post(
-				`${process.env.REACT_APP_BASE_URL}/conversationalComplaint/conversation/${conversationId}/message`,
+				`${BASE_URL}/conversationalComplaint/conversation/${conversationId}/message`,
 				{ sender, message }
 			);
 			console.log("Response data:", response.data);
