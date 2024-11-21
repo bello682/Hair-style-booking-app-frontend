@@ -172,3 +172,26 @@ p.account a:hover {
 		padding-top: 0;
 	}
 }
+
+/* For tablet screens (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.login-form .main {
+		flex-direction: column;
+	}
+	.form-img {
+		border-radius: 0;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
+		order: 2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.content {
+		order: 1;
+		border-radius: 0;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+}

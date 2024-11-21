@@ -218,6 +218,14 @@ label {
 	}
 }
 
+@media screen and (max-width: 768px) {
+	.booking-form {
+		flex: 1 1;
+		padding: 0px;
+		background-color: transparent !important;
+	}
+}
+
 /* ======= web image select ======== */
 .GlobalImageModal-style {
 	display: flex;
