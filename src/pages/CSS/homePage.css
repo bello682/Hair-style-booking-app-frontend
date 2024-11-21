@@ -523,6 +523,64 @@ body {
 	}
 }
 
+/* For tablet screens (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.home_View {
+		flex-direction: column; /* Stack items vertically */
+	}
+
+	.slider_general_wrapper {
+		order: -1; /* Move carousel to the top */
+		margin-bottom: 2rem; /* Add spacing between carousel and content */
+	}
+
+	.home_view_sub {
+		text-align: center; /* Center content below the carousel */
+		padding-bottom: 5rem;
+	}
+
+	.home_content {
+		max-width: 80%; /* Adjust content width */
+		margin: 0 auto; /* Center content */
+	}
+
+	.btn_box {
+		justify-content: center; /* Center buttons */
+		gap: 1rem; /* Add spacing between buttons */
+	}
+
+	.home_hover {
+		position: absolute;
+		top: 180px;
+		right: 60px;
+		width: 750px;
+		height: 60%;
+		background: transparent;
+		transition: 3s;
+		animation: manipActiveHover 0.1s forwards;
+		animation-delay: 4s;
+		pointer-events: none;
+	}
+
+	.home_view_sub .btn_box {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		width: 345px;
+		height: 50px;
+		margin: auto;
+	}
+
+	.home_sci {
+		position: relative;
+		background: transparent;
+		margin: 3rem auto auto auto;
+		display: flex;
+		justify-content: space-between;
+		width: 30%;
+	}
+}
+
 /* ========================================================================================================================== */
 /* dropDwon filter */
 /* ========================================================================================================================== */
