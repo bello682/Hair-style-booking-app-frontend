@@ -29,13 +29,13 @@
 import React from "react";
 import "./ImageCard.css";
 
-const ImageCard = ({ imageUrl, imageName, onclickBooking }) => {
+const ImageCard = ({ imageUrl, imageName, onclickViewImage, Expand_Image }) => {
 	return (
 		<div className="image-card">
 			<img className="image-card__img" src={imageUrl} alt={imageName} />
 			<p className="image-card__name">{imageName}</p>
-			<button className="image-card__button" onClick={onclickBooking}>
-				Book Now
+			<button className="image-card__button" onClick={onclickViewImage}>
+				{Expand_Image}
 			</button>
 		</div>
 	);

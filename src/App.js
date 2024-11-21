@@ -82,6 +82,9 @@ import MaleUploads from "./pages/admin/adminUploads/maleUploads";
 import FemaleUploads from "./pages/admin/adminUploads/femaleUploads";
 import OthersUploads from "./pages/admin/adminUploads/othersUploads";
 import GetAllImagesTour from "./pages/main-website-pages/getAllImagesTour";
+import AdminCreateNotificationForm from "./pages/admin/adminPages/CreateNotification/createNotification";
+import NotificationList from "./pages/users/getNotifications/getNotifications";
+import AdminNotificationList from "./pages/admin/adminPages/CreateNotification/adminNotificationList";
 
 function App() {
 	const location = useLocation();
@@ -100,6 +103,9 @@ function App() {
 					<Route path="/resend-otp" element={<ResendOtpPage />} />
 					<Route path="/booking/hair-service" element={<BookingForm />} />
 					<Route path="/tour-our-services" element={<GetAllImagesTour />} />
+
+					{/* USER GET NOTIFICATIONS FROM ADMIN */}
+					<Route path="/GET-NOTIFICATION" element={<NotificationList />} />
 
 					{/* ADMIN ROUTES */}
 					<Route path="/admin-register" element={<AdminSignUp />} />
@@ -124,6 +130,17 @@ function App() {
 					<Route path="admin-male-uploads" element={<MaleUploads />} />
 					<Route path="admin-female-uploads" element={<FemaleUploads />} />
 					<Route path="admin-others-uploads" element={<OthersUploads />} />
+					{/* ADMIN CREATE NOTIFICATION  PAGES */}
+					<Route
+						path="admin-create-notification"
+						element={<AdminCreateNotificationForm />}
+					/>
+					{/* ADMIN GET NOTIFICATIONS FROM ADMIN */}
+					<Route
+						path="admin-get-notification"
+						element={<AdminNotificationList />}
+					/>
+
 					<Route path="*" element={<div>404 - Page not found</div>} />
 				</Routes>
 			</div>

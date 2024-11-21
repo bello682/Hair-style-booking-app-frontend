@@ -1,0 +1,210 @@
+/* Container Styling */
+.notification-form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: #081b29;
+	/* background: linear-gradient(135deg, #007bff, #6610f2); */
+	color: #fff;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+/* Title */
+.form-title {
+	font-size: 2.5rem;
+	margin-bottom: 20px;
+	text-align: center;
+	animation: fadeInDown 1s ease-in-out;
+}
+
+/* Form */
+.notification-form {
+	background: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	max-width: 400px;
+	color: #333;
+	animation: fadeInUp 1s ease-in-out;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+/* Labels */
+.form-label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: bold;
+	color: #555;
+}
+
+/* Inputs */
+.form-input,
+.form-textarea,
+.form-select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+	outline: none;
+	border-color: #081b29;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button */
+.form-submit-btn {
+	width: 100%;
+	padding: 12px;
+	/* background: #007bff; */
+	background: #081b29;
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.3s ease-in-out;
+}
+
+.form-submit-btn:hover {
+	background: #262627;
+	color: white;
+}
+
+/* Status Message */
+.status-message {
+	margin-top: 20px;
+	font-size: 1rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.status-message.success {
+	color: #28a745;
+}
+
+.status-message.error {
+	color: #dc3545;
+}
+
+/* Error Message */
+.error-message {
+	color: #dc3545;
+	font-size: 0.9rem;
+	margin-top: 5px;
+}
+
+/* Input Error State */
+.input-error {
+	border-color: #dc3545;
+	box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
+
+/* Adjustments for Error Display */
+.form-input.input-error,
+.form-textarea.input-error,
+.form-select.input-error {
+	background: #fff5f5;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ============================================= GET NOTIFICATION ============================================================= */
+.notification-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.notification-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 15px;
+	margin: auto auto 10px auto;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	position: relative;
+	overflow: hidden; /* Ensure the sliding text doesn't overflow outside */
+	background-color: #f8f9fa;
+	width: 90%;
+}
+
+.notification-content {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	overflow: hidden; /* Hide overflowing sliding text */
+	width: 100%;
+	position: relative;
+}
+
+.notification-content {
+	white-space: nowrap; /* Prevent wrapping of text */
+	animation: slide-horizontal 20s linear infinite; /* Sliding animation */
+	font-size: 1rem;
+	color: #333;
+}
+
+.notification-close-btn {
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	color: #000;
+	cursor: pointer;
+	display: none;
+}
+
+.notification-title {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.notification-item:hover .notification-close-btn {
+	color: #dc3545;
+	display: block;
+}
+
+/* Animation for sliding text */
+@keyframes slide-horizontal {
+	0% {
+		transform: translateX(100%); /* Start off-screen to the right */
+	}
+	100% {
+		transform: translateX(-100%); /* Slide completely to the left */
+	}
+}

@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllImages } from "../../store/action/adminActions/imagesUploadAction";
 import ImageCard from "../../components/imageCard";
 import "../CSS/homePage.css";
+import { useNavigate } from "react-router-dom";
+import NotificationList from "./../users/getNotifications/getNotifications";
 
 // Reusable Card Component
 
 const GetAllImagesTour = () => {
 	const dispatch = useDispatch();
+	const navigation = useNavigate();
 	const { loadingGetAllImages, allImages, errorGetAllImages } = useSelector(
 		(state) => state.getallUploadStateReducer
 	);
@@ -17,9 +20,11 @@ const GetAllImagesTour = () => {
 	const [dataFemale, setDataFemale] = useState([]);
 	const [dataOthers, setDataOthers] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
-
 	// State for the filter selection
 	const [filter, setFilter] = useState("all");
+	// Modal State
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedImage, setSelectedImage] = useState(null);
 
 	useEffect(() => {
 		dispatch(getAllImages());
@@ -65,9 +70,28 @@ const GetAllImagesTour = () => {
 		}
 	}, [filter, dataMale, dataFemale, dataOthers]);
 
+	// Modal Functions
+	const openModal = (image) => {
+		setSelectedImage(image);
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+		setSelectedImage(null);
+	};
+
+	const handleBooking = () => {
+		navigation("/booking/hair-service");
+	};
+
 	// Handle loading and error states
 	if (loadingGetAllImages) {
-		return <div>Loading...</div>;
+		return (
+			<div className="Loading__Images">
+				<h1>Loading, Please Wait While Processing Images...</h1>
+			</div>
+		);
 	}
 
 	if (errorGetAllImages) {
@@ -86,7 +110,7 @@ const GetAllImagesTour = () => {
 			{/* Dropdown for filter selection */}
 			<div className="dropdown-container">
 				<label htmlFor="imageFilter" className="dropdown-label">
-					Filter by:
+					Select by:
 				</label>
 				<select
 					id="imageFilter"
@@ -101,16 +125,42 @@ const GetAllImagesTour = () => {
 				</select>
 			</div>
 
+			<NotificationList />
+
 			{/* Display filtered data */}
-			<div style={{ display: "flex", flexWrap: "wrap" }}>
+			<div className="getAll__image__show">
 				{filteredData.map((image) => (
 					<ImageCard
 						key={image._id}
 						imageUrl={image.imageUrl}
 						imageName={image.imageName}
+						Expand_Image="Expand Image"
+						onclickViewImage={() => openModal(image)}
 					/>
 				))}
 			</div>
+
+			{/* Modal */}
+			{isModalOpen && (
+				<div className="modal-overlay" onClick={closeModal}>
+					<div className="modal-content" onClick={(e) => e.stopPropagation()}>
+						<img
+							src={selectedImage?.imageUrl}
+							alt={selectedImage?.imageName}
+							className="modal-image"
+						/>
+						<p className="modal-caption">{selectedImage?.imageName}</p>
+						<div style={{ display: "flex", gap: "1rem" }}>
+							<button className="modal-close-button" onClick={closeModal}>
+								Close
+							</button>
+							<button className="modal-close-button" onClick={handleBooking}>
+								Book now
+							</button>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

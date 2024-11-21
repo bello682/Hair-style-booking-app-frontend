@@ -38,13 +38,17 @@ const HeaderPage = () => {
 					)}
 				</nav>
 				<div className="hamburger" onClick={toggleMenu}>
-					{isOpen ? <FaTimes /> : <FaBars />}
+					{isOpen ? (
+						<FaTimes className="closeFaTimes" />
+					) : (
+						<FaBars className="openFaBars" />
+					)}
 				</div>
 				<nav className={`navbar-mobile ${isOpen ? "active" : ""}`}>
-					<a href="#" className="active">
+					<a href="/" className="active" onClick={toggleMenu}>
 						Home
 					</a>
-					<a href="#" onClick={toggleMenu}>
+					<a href="/tour-our-services" onClick={toggleMenu}>
 						Service
 					</a>
 					<a href="#" onClick={toggleMenu}>

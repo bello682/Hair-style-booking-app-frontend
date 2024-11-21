@@ -202,6 +202,9 @@ const NewRequests = () => {
 							{selectedBooking?.booked ? "Booked" : "Not Booked"}
 						</p>
 						<p>
+							<strong>Gender:</strong> {selectedBooking?.serviceType}
+						</p>
+						<p>
 							<strong>isNewRequest:</strong>{" "}
 							{selectedBooking?.isNewRequest
 								? "New Request"

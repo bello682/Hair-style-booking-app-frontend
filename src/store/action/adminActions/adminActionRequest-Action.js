@@ -1,116 +1,3 @@
-// // bookingActions.js
-// import axios from "axios";
-// import * as actionTypes from "../../actionType/adminActionTypes/adminActionRequest-ActionTypes";
-
-// const API_URL = process.env.REACT_APP_BASE_URL;
-
-// // Accept Booking Request
-// export const acceptBookingRequestByAdmin =
-// 	(adminId, bookingRequestId) => async (dispatch) => {
-// 		try {
-// 			const token = localStorage.getItem("token");
-// 			await axios.put(
-// 				`${API_URL}/HairStyleAdmin/booking/accept/${adminId}/${bookingRequestId}`,
-// 				{},
-// 				{
-// 					headers: {
-// 						Authorization: `Bearer ${token}`,
-// 					},
-// 				}
-// 			);
-
-// 			dispatch({
-// 				type: actionTypes.ACCEPT_BOOKING_REQUEST,
-// 				payload: { bookingRequestId },
-// 			});
-// 		} catch (error) {
-// 			dispatch({
-// 				type: actionTypes.SET_BOOKINGS_ERROR,
-// 				payload: error.message,
-// 			});
-// 		}
-// 	};
-
-// // Reject Booking Request
-// export const rejectBookingRequestByAdmin =
-// 	(adminId, bookingRequestId) => async (dispatch) => {
-// 		try {
-// 			const token = localStorage.getItem("token");
-// 			await axios.put(
-// 				`${API_URL}/HairStyleAdmin/booking/reject/${adminId}/${bookingRequestId}`,
-// 				{},
-// 				{
-// 					headers: {
-// 						Authorization: `Bearer ${token}`,
-// 					},
-// 				}
-// 			);
-
-// 			dispatch({
-// 				type: actionTypes.REJECT_BOOKING_REQUEST,
-// 				payload: { bookingRequestId },
-// 			});
-// 		} catch (error) {
-// 			dispatch({
-// 				type: actionTypes.SET_BOOKINGS_ERROR,
-// 				payload: error.message,
-// 			});
-// 		}
-// 	};
-
-// // Complete Booking Request
-// export const completeBookingRequestByAdmin =
-// 	(adminId, bookingRequestId) => async (dispatch) => {
-// 		try {
-// 			const token = localStorage.getItem("token");
-// 			await axios.put(
-// 				`${API_URL}/HairStyleAdmin/booking/complete/${adminId}/${bookingRequestId}`,
-// 				{},
-// 				{
-// 					headers: {
-// 						Authorization: `Bearer ${token}`,
-// 					},
-// 				}
-// 			);
-
-// 			dispatch({
-// 				type: actionTypes.COMPLETE_BOOKING_REQUEST,
-// 				payload: { bookingRequestId },
-// 			});
-// 		} catch (error) {
-// 			dispatch({
-// 				type: actionTypes.SET_BOOKINGS_ERROR,
-// 				payload: error.message,
-// 			});
-// 		}
-// 	};
-
-// // Delete Booking Request
-// export const deleteBookingRequestByAdmin =
-// 	(adminId, bookingRequestId) => async (dispatch) => {
-// 		try {
-// 			const token = localStorage.getItem("token");
-// 			await axios.delete(
-// 				`${API_URL}/HairStyleAdmin/booking/delete/${adminId}/${bookingRequestId}`,
-// 				{
-// 					headers: {
-// 						Authorization: `Bearer ${token}`,
-// 					},
-// 				}
-// 			);
-
-// 			dispatch({
-// 				type: actionTypes.DELETE_BOOKING_REQUEST,
-// 				payload: { bookingRequestId },
-// 			});
-// 		} catch (error) {
-// 			dispatch({
-// 				type: actionTypes.SET_BOOKINGS_ERROR,
-// 				payload: error.message,
-// 			});
-// 		}
-// 	};
-
 // bookingActions.js
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/adminActionRequest-ActionTypes";
@@ -134,12 +21,23 @@ export const acceptBookingRequestByAdmin =
 				payload: response.data,
 			});
 
+			success({
+				title: "Success",
+				msg: response.data?.message,
+			});
+
 			console.log(response.data);
-		} catch (error) {
-			console.log("accept", error);
+		} catch (err) {
+			console.log("accept", err);
+
 			dispatch({
 				type: actionTypes.ACCEPT_BOOKING_FAILURE,
-				payload: error.message || "Failed to accept booking request",
+				payload: err.message || "Failed to accept booking request",
+			});
+
+			error({
+				title: "Error",
+				msg: err.response?.data?.message || "Failed to accept booking request",
 			});
 		}
 	};
@@ -160,12 +58,26 @@ export const rejectBookingRequestByAdmin =
 				payload: res.data,
 			});
 
+			success({
+				title: "Success",
+				msg: res.data?.message,
+			});
+
 			console.log(res.data);
-		} catch (error) {
-			console.log("reject", error);
+		} catch (err) {
+			console.log("reject", err);
+
+			const errorMessage =
+				err.response?.data?.message ||
+				"Failed to reject booking request, try again";
 			dispatch({
 				type: actionTypes.REJECT_BOOKING_FAILURE,
-				payload: error.message || "Failed to reject booking request",
+				payload: err.message || "Failed to reject booking request",
+			});
+
+			error({
+				title: "Error",
+				msg: errorMessage,
 			});
 		}
 	};
@@ -186,12 +98,25 @@ export const completeBookingRequestByAdmin =
 				payload: res.data,
 			});
 
+			success({
+				title: "Success",
+				msg: res.data?.message,
+			});
+
 			console.log(res.data);
-		} catch (error) {
-			console.log("complete", error);
+		} catch (err) {
+			console.log("complete", err);
+			const errorMessage =
+				err.response?.data?.message ||
+				"Failed to complete booking request, try again";
 			dispatch({
 				type: actionTypes.COMPLETE_BOOKING_FAILURE,
-				payload: error.message || "Failed to complete booking request",
+				payload: err.message || "Failed to complete booking request",
+			});
+
+			error({
+				title: "Error",
+				msg: errorMessage,
 			});
 		}
 	};
@@ -216,15 +141,13 @@ export const deleteBookingRequestByAdmin =
 				title: "Success",
 				msg: res.data?.message,
 			});
-
-			console.log(res.data);
-		} catch (error) {
+		} catch (err) {
 			const errorMessage =
 				err.response?.data?.message ||
 				"Failed to delete booking request, try again";
 			dispatch({
 				type: actionTypes.DELETE_BOOKING_FAILURE,
-				payload: error.message || "Failed to delete booking request",
+				payload: err.message || "Failed to delete booking request",
 			});
 			error({
 				title: "Error",

@@ -18,7 +18,7 @@ body {
 	background: #081b29;
 }
 
-.home-header-user {
+/* .home-header-user {
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -31,6 +31,24 @@ body {
 	z-index: 1000;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	transition: background-color 0.3s ease;
+	} */
+
+.home-header-user {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* background: rgba(0, 0, 0, 0.5); Semi-transparent background */
+	background: transparent; /* Semi-transparent background */
+	color: #fff;
+	padding: 15px 70px;
+	z-index: 1000;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease;
+	backdrop-filter: blur(10px); /* Adds blur to the background */
+	-webkit-backdrop-filter: blur(10px); /* Safari support */
 }
 
 .Logo_Style {
@@ -444,9 +462,9 @@ body {
 		flex-direction: column;
 		background-color: #081b29;
 		position: absolute;
-		top: 60px;
-		right: 20px;
-		width: 300px;
+		top: 100px;
+		right: 0px;
+		width: 350px;
 		height: 100vh;
 		border-radius: 8px;
 		padding: 10px;
@@ -481,6 +499,13 @@ body {
 	.home_hover {
 		display: none;
 	}
+
+	.openFaBars {
+	}
+
+	.closeFaTimes {
+		color: #9a9c9d;
+	}
 }
 
 /* ========================================================================================================================== */
@@ -491,7 +516,7 @@ body {
 
 /* General container styling */
 .container--Images--upload {
-	margin-top: 2rem;
+	margin-top: 3rem;
 }
 
 .container--Images--upload h2 {
@@ -501,7 +526,7 @@ body {
 
 .dropdown-container {
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	justify-content: flex-end;
 	gap: 10px;
 	margin-bottom: 20px;
@@ -516,7 +541,7 @@ body {
 /* Label Styling */
 .dropdown-label {
 	font-weight: 600;
-	color: #333;
+	color: white;
 	font-size: 1rem;
 }
 
@@ -548,6 +573,68 @@ body {
 	transform: translateY(-2px);
 }
 
+/* modal images filter side */
+
+/* Modal Styles */
+.getAll__image__show {
+	width: 100%;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	width: 80%;
+	max-width: 800px;
+}
+
+.modal-image {
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+
+.modal-caption {
+	margin-top: 10px;
+	font-size: 1.2rem;
+	color: #333;
+	text-align: center;
+}
+
+.modal-close-button {
+	margin-top: 10px;
+	padding: 10px 20px;
+	background-color: #ff5c5c;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.modal-close-button:hover {
+	background-color: #ff3333;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
 	.container--Images--upload {
@@ -576,5 +663,24 @@ body {
 
 	.dropdown-select {
 		width: 100%;
+	}
+}
+
+.Loading__Images {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+
+.Loading__Images h1 {
+	font-size: 40px;
+}
+
+@media screen and (max-width: 768px) {
+	.Loading__Images h1 {
+		font-size: 15px;
 	}
 }

@@ -1,5 +1,6 @@
 // bookHairService.js
 import axiosInstance from "../../../utils/axiosInstance";
+import { error, success } from "../../../../src/notifivations/notification";
 import * as actionTypes from "../../actionType/userActionType/userBookingHairRequest";
 import { getStoredDeviceId } from "../../../utils/authStorage"; // Adjust the import path as necessary
 
@@ -22,10 +23,23 @@ export const bookHairService = (bookingData) => async (dispatch) => {
 		);
 
 		dispatch({ type: actionTypes.BOOKING_SUCCESS, payload: response.data });
-	} catch (error) {
+
+		success({
+			title: "Success",
+			msg: response.data?.message,
+		});
+	} catch (err) {
+		const errorMessage =
+			err.response?.data?.message || "Failed booking request, try again";
+
 		dispatch({
 			type: actionTypes.BOOKING_FAILURE,
-			payload: error.response?.data || "Booking failed.",
+			payload: err.response?.data || "Booking failed.",
+		});
+
+		error({
+			title: "Error",
+			msg: errorMessage,
 		});
 	}
 };

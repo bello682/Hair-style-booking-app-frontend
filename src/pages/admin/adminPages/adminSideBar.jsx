@@ -238,13 +238,10 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.notifications && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="">Alert Message</a>
+								<a href="/admin-create-notification">Create Message</a>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Warning Message</a>
-							</li>
-							<li className="dropdown-list-item">
-								<a href="">Success Message</a>
+								<a href="/admin-get-notification">View Message</a>
 							</li>
 						</ul>
 					)}

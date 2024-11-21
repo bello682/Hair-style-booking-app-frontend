@@ -1,161 +1,26 @@
-// import React, { useState } from "react";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
-// import { useDispatch, useSelector } from "react-redux";
-// import { bookHairService } from "./../../store/action/userActions/userBookingHairRequest";
-// import ChatModal from "../../chat/chatModal";
-
-// const BookingForm = () => {
-// 	const dispatch = useDispatch();
-// 	const { loading, booking, error } = useSelector(
-// 		(state) => state.bookingRquestState
-// 	);
-
-// 	const validationSchema = Yup.object({
-// 		hairStyleImages: Yup.mixed().required("Hair style image is required"),
-// 		hairStyleName: Yup.string().required("Required"),
-// 		serviceType: Yup.string().required("Required"),
-// 		serviceDate: Yup.date().required("Required"),
-// 		serviceTime: Yup.string().required("Required"),
-// 		description: Yup.string().max(500, "Description too long"),
-// 	});
-
-// 	const initialValues = {
-// 		hairStyleImages: [],
-// 		hairStyleName: "",
-// 		serviceType: "",
-// 		serviceDate: "",
-// 		serviceTime: "",
-// 		description: "",
-// 	};
-
-// 	const onSubmit = (values) => {
-// 		const formData = new FormData();
-// 		values.hairStyleImages.forEach((file) =>
-// 			formData.append("hairStyleImages", file)
-// 		);
-// 		formData.append("hairStyleName", values.hairStyleName);
-// 		formData.append("serviceType", values.serviceType);
-// 		formData.append("serviceDate", values.serviceDate);
-// 		formData.append("serviceTime", values.serviceTime);
-// 		formData.append("description", values.description);
-
-// 		dispatch(bookHairService(formData));
-// 	};
-
-// 	return (
-// 		<>
-// 			<Formik
-// 				initialValues={initialValues}
-// 				validationSchema={validationSchema}
-// 				onSubmit={onSubmit}
-// 			>
-// 				{({ handleSubmit, setFieldValue, errors, touched }) => (
-// 					<Form onSubmit={handleSubmit}>
-// 						{/* Hair Style Images */}
-// 						<div>
-// 							<input
-// 								type="file"
-// 								name="hairStyleImages"
-// 								multiple
-// 								onChange={(event) => {
-// 									const files = Array.from(event.target.files);
-// 									setFieldValue("hairStyleImages", files);
-// 								}}
-// 							/>
-// 							{errors.hairStyleImages && touched.hairStyleImages && (
-// 								<div>{errors.hairStyleImages}</div>
-// 							)}
-// 						</div>
-
-// 						{/* Other fields */}
-// 						<div>
-// 							<Field
-// 								type="text"
-// 								name="hairStyleName"
-// 								placeholder="Hair Style Name"
-// 							/>
-// 							{errors.hairStyleName && touched.hairStyleName && (
-// 								<div>{errors.hairStyleName}</div>
-// 							)}
-// 						</div>
-
-// 						<div>
-// 							<Field
-// 								type="text"
-// 								name="serviceType"
-// 								placeholder="Service Type"
-// 							/>
-// 							{errors.serviceType && touched.serviceType && (
-// 								<div>{errors.serviceType}</div>
-// 							)}
-// 						</div>
-
-// 						<div>
-// 							<Field type="date" name="serviceDate" />
-// 							{errors.serviceDate && touched.serviceDate && (
-// 								<div>{errors.serviceDate}</div>
-// 							)}
-// 						</div>
-
-// 						<div>
-// 							<Field type="time" name="serviceTime" />
-// 							{errors.serviceTime && touched.serviceTime && (
-// 								<div>{errors.serviceTime}</div>
-// 							)}
-// 						</div>
-
-// 						<div>
-// 							<Field
-// 								as="textarea"
-// 								name="description"
-// 								placeholder="Description"
-// 							/>
-// 							{errors.description && touched.description && (
-// 								<div>{errors.description}</div>
-// 							)}
-// 						</div>
-
-// 						<button type="submit" disabled={loading}>
-// 							Book Service
-// 						</button>
-
-// 						{booking && (
-// 							<div>Booking successful: {JSON.stringify(booking)}</div>
-// 						)}
-// 						{error && (
-// 							<div>Error: {error.message || JSON.stringify(error)}</div>
-// 						)}
-// 					</Form>
-// 				)}
-// 			</Formik>
-// 		</>
-// 	);
-// };
-
-// export default BookingForm;
-
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { bookHairService } from "./../../store/action/userActions/userBookingHairRequest";
+import * as Yup from "yup";
+import { bookHairService } from "../../store/action/userActions/userBookingHairRequest";
 import "../CSS/bookingForm.css";
-import bg from "../../asset/images/bg.png";
+import GlobalImageModal from "./../../components/webImagesToSelect";
+import NotificationList from "./getNotifications/getNotifications";
 
 const BookingForm = () => {
 	const dispatch = useDispatch();
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedImages, setSelectedImages] = useState([]);
 	const { loading, booking, error } = useSelector(
 		(state) => state.bookingRquestState
 	);
-	const [previewImages, setPreviewImages] = useState([]);
 
 	const validationSchema = Yup.object({
-		imageSource: Yup.string().required("Please select an image source"),
-		hairStyleName: Yup.string().required("Required"),
-		serviceType: Yup.string().required("Required"),
-		serviceDate: Yup.date().required("Required"),
-		serviceTime: Yup.string().required("Required"),
+		imageSource: Yup.string().required("Select an image source"),
+		hairStyleName: Yup.string().required("Hair style name is required"),
+		serviceType: Yup.string().required("Service type is required"),
+		serviceDate: Yup.date().required("Service date is required"),
+		serviceTime: Yup.string().required("Service time is required"),
 		description: Yup.string().max(500, "Description too long"),
 	});
 
@@ -169,87 +34,131 @@ const BookingForm = () => {
 		description: "",
 	};
 
-	const onSubmit = (values) => {
+	const handleImageSelection = (files) => {
+		const imagePreviews = Array.from(files).map((file) => ({
+			file,
+			url: URL.createObjectURL(file),
+		}));
+		setSelectedImages((prev) => [...prev, ...imagePreviews]);
+	};
+
+	const handleRemoveImage = (index) => {
+		setSelectedImages((prev) => prev.filter((_, i) => i !== index));
+	};
+
+	const handleSubmit = (values) => {
 		const formData = new FormData();
 
-		values.hairStyleImages.forEach((file) =>
-			formData.append("hairStyleImages", file)
-		);
-		formData.append("hairStyleName", values.hairStyleName);
-		formData.append("serviceType", values.serviceType);
-		formData.append("serviceDate", values.serviceDate);
-		formData.append("serviceTime", values.serviceTime);
-		formData.append("description", values.description);
+		// Append uploaded files
+		selectedImages.forEach(({ file, url }) => {
+			if (file) {
+				formData.append("hairStyleImages", file); // Add file directly
+			} else if (url) {
+				formData.append("hairStyleImages", url); // Add URL directly under the same key
+			}
+		});
 
-		dispatch(bookHairService(formData));
+		const webImageUrls = selectedImages
+			.filter(({ file }) => !file) // Include only web images (no files)
+			.map(({ url }) => url);
+
+		formData.append("webImageUrls", JSON.stringify(webImageUrls));
+
+		// Add other form fields to FormData
+		Object.keys(values).forEach((key) => {
+			if (key !== "imageSource") {
+				// Exclude "imageSource"
+				formData.append(key, values[key]);
+			}
+		});
+
+		dispatch(bookHairService(formData)); // Dispatch FormData to backend
 	};
 
-	const handleImageSourceChange = (event, setFieldValue) => {
-		const source = event.target.value;
-		setFieldValue("imageSource", source);
-
-		if (source === "device") {
-			document.getElementById("fileUpload").click();
-		} else if (source === "web") {
-			alert("Web image selection is under development.");
-		}
-	};
-
-	const handleFileChange = (event, setFieldValue) => {
-		const files = Array.from(event.target.files);
-		setFieldValue("hairStyleImages", files);
-
-		const filePreviews = files.map((file) => URL.createObjectURL(file));
-		setPreviewImages(filePreviews);
+	// When web image is selected in modal
+	const handleWebImageSelection = (image) => {
+		setSelectedImages((prev) => [
+			...prev,
+			{ url: image.imageUrl, file: null }, // Add web URL to selectedImages
+		]);
 	};
 
 	return (
 		<>
 			<div className="h1_title_booking">
-				<h1> Fill in your Booking Information</h1>
+				<h1>Fill in your Booking Information</h1>
+				<NotificationList />
 			</div>
 			<div className="booking-container">
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}
-					onSubmit={onSubmit}
+					onSubmit={handleSubmit}
 				>
-					{({ handleSubmit, setFieldValue, errors, touched }) => (
-						<Form onSubmit={handleSubmit} className="booking-form">
+					{({ setFieldValue }) => (
+						<Form className="booking-form">
+							{/* Image Source Selection */}
 							<div className="form-group">
 								<label>Image Source</label>
 								<Field
 									as="select"
 									name="imageSource"
-									className={`form-control ${
-										touched.imageSource && errors.imageSource
-											? "input-error"
-											: ""
-									}`}
-									onChange={(event) =>
-										handleImageSourceChange(event, setFieldValue)
-									}
+									className="form-control"
+									onChange={(e) => {
+										const value = e.target.value;
+										setFieldValue("imageSource", value);
+										if (value === "web") {
+											setIsModalOpen(true);
+										} else if (value === "device") {
+											document.getElementById("fileUpload").click();
+										}
+									}}
 								>
 									<option value="">Select Image Source</option>
-									<option value="device">Select image from your device</option>
-									<option value="web">Select from our web images</option>
+									<option value="device">Device</option>
+									<option value="web">Web</option>
 								</Field>
 								<ErrorMessage
 									name="imageSource"
 									component="div"
 									className="error-message"
 								/>
-
-								<input
-									type="file"
-									id="fileUpload"
-									name="hairStyleImages"
-									style={{ display: "none" }}
-									multiple
-									onChange={(event) => handleFileChange(event, setFieldValue)}
-								/>
 							</div>
 
+							{/* File Upload Input (Hidden) */}
+							<input
+								type="file"
+								id="fileUpload"
+								name="hairStyleImages"
+								style={{ display: "none" }}
+								multiple
+								accept="image/*"
+								onChange={(e) => handleImageSelection(e.target.files)}
+							/>
+
+							{/* Selected Image Preview */}
+							{selectedImages.length > 0 && (
+								<div className="image-preview-container">
+									{selectedImages.map((image, index) => (
+										<div key={index} className="image-preview">
+											<img
+												src={image.url}
+												alt={`Selected ${index}`}
+												className="preview-image"
+											/>
+											<button
+												type="button"
+												className="remove-image-button"
+												onClick={() => handleRemoveImage(index)}
+											>
+												✖
+											</button>
+										</div>
+									))}
+								</div>
+							)}
+
+							{/* Other Fields */}
 							<div className="form-group">
 								<label>Hair Style Name</label>
 								<Field
@@ -267,18 +176,10 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Type</label>
-								<Field
-									as="select"
-									name="serviceType"
-									placeholder="Enter Service Type"
-									className="form-control"
-									onChange={(event) =>
-										setFieldValue("serviceType", event.target.value)
-									}
-								>
+								<Field as="select" name="serviceType" className="form-control">
 									<option value="">Select Service Type</option>
-									<option value="male">male</option>
-									<option value="female">female</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
 								</Field>
 								<ErrorMessage
 									name="serviceType"
@@ -320,7 +221,7 @@ const BookingForm = () => {
 								<Field
 									as="textarea"
 									name="description"
-									placeholder="Enter description"
+									placeholder="Enter Description"
 									className="form-control"
 								/>
 								<ErrorMessage
@@ -330,41 +231,25 @@ const BookingForm = () => {
 								/>
 							</div>
 
-							<button
-								type="submit"
-								disabled={loading}
-								className="submit-button"
-							>
-								{loading ? "Booking Loading..." : "Book Service"}
+							{/* Submit Button */}
+							<button type="submit" className="submit-button">
+								Submit Booking
 							</button>
-
-							{booking && (
-								<div className="success-message">
-									Booking successful: {JSON.stringify(booking)}
-								</div>
-							)}
-							{error && (
-								<div className="error-message">
-									Error: {error.message || JSON.stringify(error)}
-								</div>
-							)}
 						</Form>
 					)}
 				</Formik>
 
-				{/* Conditionally render the image preview container */}
-				{previewImages.length > 0 && (
-					<div className="image-preview-container">
-						{previewImages.map((src, index) => (
-							<div
-								key={index}
-								className="image-preview"
-								style={{ backgroundImage: `url(${src})` }}
-							></div>
-						))}
-					</div>
-				)}
+				{/* Modal for Web Images */}
 			</div>
+			{isModalOpen && (
+				<div className="GlobalImageModal-style">
+					<GlobalImageModal
+						isOpen={isModalOpen}
+						onClose={() => setIsModalOpen(false)}
+						onSelectImage={handleWebImageSelection}
+					/>
+				</div>
+			)}
 		</>
 	);
 };

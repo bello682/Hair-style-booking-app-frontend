@@ -201,7 +201,7 @@ const UserSignUp = () => {
 											onChange={handleChange}
 											onBlur={handleBlur}
 											value={values.phoneNumber}
-											placeholder="Phone Number"
+											placeholder="Enter your (Whatsapp) Phone Number"
 											required
 										/>
 										{touched.phoneNumber && errors.phoneNumber && (
