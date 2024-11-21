@@ -94,13 +94,25 @@ import image3 from "../../../src/asset/images/image 3.jpg";
 import image4 from "../../../src/asset/images/images 4.jpg";
 import image5 from "../../../src/asset/images/image 5.jpg";
 import Carousel from "../../components/Carousel";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentTextIndex, setCurrentTextIndex] = useState(0);
+	const navigation = useNavigate();
+
+	const isVerified = localStorage.getItem("isVerified");
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const handleBookNowClick = () => {
+		if (isVerified) {
+			navigation("/booking/hair-service");
+		} else {
+			navigation("/user-signUp");
+		}
 	};
 
 	const services_text = [
@@ -153,7 +165,9 @@ const HomePage = () => {
 
 						<div className="btn_box">
 							<a href="/tour-our-services">Take a Tour</a>
-							<a href="/booking/hair-service">Book Now</a>
+							<a href="#" onClick={handleBookNowClick}>
+								Book Now
+							</a>
 						</div>
 
 						<div className="home_sci">
