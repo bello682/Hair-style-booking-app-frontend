@@ -144,6 +144,8 @@ function App() {
 					<Route path="*" element={<div>404 - Page not found</div>} />
 				</Routes>
 			</div>
+
+			{/* const BASE_URL = process.env.REACT_APP_BASE_URL || "https://hair-style-booking-app-backend.onrender.com"; */}
 		</>
 	);
 }
