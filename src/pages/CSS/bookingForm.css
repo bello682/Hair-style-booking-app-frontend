@@ -207,9 +207,9 @@ label {
 
 @media screen and (max-width: 1334px) and (max-height: 750px) {
 	/* Styles for screens up to 1334px wide and 750px high */
-	.booking-form .form-control {
+	.ImageSource__select__image {
 		width: 100%;
-		padding: 20px;
+		padding: 15px 10px;
 		border: 1px solid #ccc;
 		border-radius: 10px;
 	}

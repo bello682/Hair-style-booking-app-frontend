@@ -103,7 +103,7 @@ const BookingForm = () => {
 								<Field
 									as="select"
 									name="imageSource"
-									className="form-control"
+									className="form-control ImageSource__select__image"
 									onChange={(e) => {
 										const value = e.target.value;
 										setFieldValue("imageSource", value);
