@@ -119,7 +119,7 @@ const HomePage = () => {
 		{
 			name: "Welcome! We’re here to simplify life for you",
 			description:
-				"Say goodbye to the hassle of scheduling and managing appointments. With our app, you’re just a few taps away from easily booking the services you need. We streamline the entire process to save you time and keep your day organized, whether it’s booking a salon appointment, a repair service, or any other professional help. Enjoy a seamless experience, tailored to fit your schedule. Simplify your life and make every booking effortless!",
+				"Streamline your bookings with ease! Our app lets you schedule services in just a few taps—whether it’s a salon visit, repairs, or professional help. Save time, stay organized, and enjoy a hassle-free experience tailored to your schedule. Simplify your life today!",
 			plug: "Your Ultimate Booking Solution",
 		},
 		{
