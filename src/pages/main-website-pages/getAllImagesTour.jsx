@@ -96,12 +96,23 @@ const GetAllImagesTour = () => {
 	}
 
 	if (errorGetAllImages) {
-		return <div>Error fetching images: {errorGetAllImages}</div>;
+		return (
+			<div className="Loading__Images">
+				<p>Error fetching images: {errorGetAllImages}</p>
+			</div>
+		);
 	}
 
 	// Check if no data is available
 	if (!allImages || !allImages || allImages.length === 0) {
-		return <div>No images found.</div>;
+		return (
+			<div className="Loading__Images">
+				<h1>
+					We are sorry for the inconvenience, all images are under process,
+					please try again later. No images found.
+				</h1>
+			</div>
+		);
 	}
 
 	const handleBooking = () => {
