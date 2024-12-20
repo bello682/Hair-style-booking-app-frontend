@@ -129,6 +129,7 @@ const HeaderPage = () => {
 		const path = location.pathname;
 		if (path === "/") setActiveLink("Home");
 		else if (path === "/tour-our-services") setActiveLink("Service");
+		else if (path === "/contact-us") setActiveLink("Contact Us");
 		else if (path === "/user-signUp" || path === "/booking/hair-service")
 			setActiveLink("Booking");
 		else setActiveLink(""); // Default or fallback
@@ -162,7 +163,7 @@ const HeaderPage = () => {
 						Service
 					</a>
 					<a
-						href="#"
+						href="/contact-us"
 						className={activeLink === "Contact Us" ? "active" : ""}
 						onClick={() => handleLinkClick("Contact Us")}
 					>
@@ -201,7 +202,7 @@ const HeaderPage = () => {
 						Service
 					</a>
 					<a
-						href="#"
+						href="/contact-us"
 						className={activeLink === "Contact Us" ? "active" : ""}
 						onClick={() => handleLinkClick("Contact Us")}
 					>

@@ -85,6 +85,7 @@ import GetAllImagesTour from "./pages/main-website-pages/getAllImagesTour";
 import AdminCreateNotificationForm from "./pages/admin/adminPages/CreateNotification/createNotification";
 import NotificationList from "./pages/users/getNotifications/getNotifications";
 import AdminNotificationList from "./pages/admin/adminPages/CreateNotification/adminNotificationList";
+import ContactUsPage from "./pages/main-website-pages/contactUs";
 
 function App() {
 	const location = useLocation();
@@ -103,6 +104,7 @@ function App() {
 					<Route path="/resend-otp" element={<ResendOtpPage />} />
 					<Route path="/booking/hair-service" element={<BookingForm />} />
 					<Route path="/tour-our-services" element={<GetAllImagesTour />} />
+					<Route path="/contact-us" element={<ContactUsPage />} />
 
 					{/* USER GET NOTIFICATIONS FROM ADMIN */}
 					<Route path="/GET-NOTIFICATION" element={<NotificationList />} />
