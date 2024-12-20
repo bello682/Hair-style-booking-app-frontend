@@ -22,8 +22,7 @@ const ContactUsPage = () => {
 	};
 
 	const BASE_URL =
-		// process.env.REACT_APP_BASE_URL ||
-		"http://localhost:8006/Api_Url";
+		process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
