@@ -5,6 +5,8 @@ import ImageCard from "../../components/imageCard";
 import "../CSS/homePage.css";
 import { useNavigate } from "react-router-dom";
 import NotificationList from "./../users/getNotifications/getNotifications";
+import Loader from "../../components/loader";
+import { IoMdInformationCircle } from "react-icons/io";
 
 // Reusable Card Component
 
@@ -91,6 +93,7 @@ const GetAllImagesTour = () => {
 		return (
 			<div className="Loading__Images">
 				<h1>Loading, Please Wait While Processing Images...</h1>
+				<Loader />
 			</div>
 		);
 	}
@@ -107,6 +110,7 @@ const GetAllImagesTour = () => {
 	if (!allImages || !allImages || allImages.length === 0) {
 		return (
 			<div className="Loading__Images">
+				<IoMdInformationCircle size={60} color="#fff" />
 				<h1>
 					We are sorry for the inconvenience, all images are under process,
 					please try again later. No images found.

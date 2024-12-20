@@ -745,22 +745,35 @@ body {
 	width: 100%;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	margin: auto;
 }
 
 .Loading__Images h1 {
-	font-size: 40px;
+	font-size: 20px;
 	text-align: center;
 }
 .Loading__Images p {
-	font-size: 40px;
+	font-size: 20px;
 	text-align: center;
 }
 
 @media screen and (max-width: 768px) {
 	.Loading__Images h1 {
 		font-size: 15px;
+	}
+}
+
+@media screen and (max-width: 1320px) {
+	.Loading__Images {
+		max-width: 600px;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
 	}
 }
