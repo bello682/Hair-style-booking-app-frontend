@@ -113,12 +113,20 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useLocation } from "react-router-dom"; // For getting the current URL
 import logo from "../../../../src/asset/images/websiteLogo.png";
 import "../../CSS/homePage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDataStart } from "../../../store/action/userActions/get UserDataActions";
 
 const HeaderPage = () => {
+	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
 	const [activeLink, setActiveLink] = useState("");
-	const isVerified = localStorage.getItem("isVerified");
 	const location = useLocation(); // Get current location
+	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
+	const isVerified = userDataFectched?.user?.isVerified;
+
+	useEffect(() => {
+		dispatch(getUserDataStart());
+	}, []);
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);

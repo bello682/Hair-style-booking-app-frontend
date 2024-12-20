@@ -232,8 +232,12 @@ const BookingForm = () => {
 							</div>
 
 							{/* Submit Button */}
-							<button type="submit" className="submit-button">
-								Submit Booking
+							<button
+								type="submit"
+								className="submit-button"
+								disabled={loading}
+							>
+								{loading ? "Processing Booking..." : "Submit Booking"}
 							</button>
 						</Form>
 					)}

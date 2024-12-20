@@ -121,9 +121,11 @@ const UserSignUp = () => {
 	);
 	const navigate = useNavigate();
 
-	const handleNavigate = () => {
-		navigate("/verify-otp");
-	};
+	useEffect(() => {
+		if (user) {
+			navigate("/verify-otp"); // Redirect to OTP verification page if user is already logged in
+		}
+	}, [user, navigate]);
 
 	return (
 		<div className="login-form">
@@ -146,7 +148,6 @@ const UserSignUp = () => {
 							})}
 							onSubmit={(values) => {
 								dispatch(registerUser(values));
-								handleNavigate(); // Redirect to OTP verification
 							}}
 						>
 							{({

@@ -32,8 +32,6 @@ export const registerUser = (userData) => async (dispatch) => {
 			title: "Success",
 			msg: response.data?.message,
 		});
-
-		console.log("REGISTER SUCCESS", response.data);
 	} catch (err) {
 		console.log("REGISTER ERROR", err);
 		dispatch({

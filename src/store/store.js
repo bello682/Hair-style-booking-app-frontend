@@ -23,6 +23,7 @@ import {
 	maleUploadReducer,
 	otherUploadReducer,
 } from "./reducers/adminReducers/imagesUploadReducer";
+import getUserDataReducerState from "./reducers/userReducers/getUserDataReducers";
 
 const reducer = combineReducers({
 	registrationReducerUser: userReducer,
@@ -44,6 +45,7 @@ const reducer = combineReducers({
 	femaleStateReducer: femaleUploadReducer,
 	othersStateReducer: otherUploadReducer,
 	getallUploadStateReducer: getAllUploadsReducer,
+	getUserDataFetch: getUserDataReducerState,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));
