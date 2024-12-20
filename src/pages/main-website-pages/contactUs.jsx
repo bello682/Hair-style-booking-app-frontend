@@ -21,10 +21,12 @@ const ContactUsPage = () => {
 		setFormData({ ...formData, [name]: value });
 	};
 
+	const BASE_URL =
+		// process.env.REACT_APP_BASE_URL ||
+		"http://localhost:8006/Api_Url";
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const BASE_URL =
-			process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 
 		try {
 			const response = await axios.post(
@@ -39,9 +41,9 @@ const ContactUsPage = () => {
 			if (response.status === 200) {
 				success({
 					title: "Success",
-					msg: response.data?.message,
+					msg: response.data,
 				});
-				setStatus("Message sent successfully!");
+				setStatus(response.data);
 				setFormData({ fullName: "", email: "", message: "" });
 			} else {
 				error({
