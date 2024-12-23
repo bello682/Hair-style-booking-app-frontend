@@ -146,12 +146,14 @@
 		font-size: 15px;  */
 
 		outline: none;
+		font-size: 15px;
 		margin-bottom: 15px;
 		font-stretch: 16px;
 		color: #999;
 		text-align: left;
 		padding: 14px 20px;
 		width: 100%;
+		max-width: 100%;
 		display: inline-block;
 		box-sizing: border-box;
 		border: none;
