@@ -100,8 +100,8 @@ const BookingForm = () => {
 							{/* Image Source Selection */}
 							<div className="form-group">
 								<label>Image Source</label>
-								<Field
-									as="select"
+								<select
+									// as="select"
 									name="imageSource"
 									className="form-control ImageSource__select__image"
 									onChange={(e) => {
@@ -117,7 +117,7 @@ const BookingForm = () => {
 									<option value="">Select Image Source</option>
 									<option value="device">Device</option>
 									<option value="web">Web</option>
-								</Field>
+								</select>
 								<ErrorMessage
 									name="imageSource"
 									component="div"
@@ -161,7 +161,7 @@ const BookingForm = () => {
 							{/* Other Fields */}
 							<div className="form-group">
 								<label>Hair Style Name</label>
-								<Field
+								<input
 									type="text"
 									name="hairStyleName"
 									placeholder="Enter Hair Style Name"
@@ -176,11 +176,15 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Type</label>
-								<Field as="select" name="serviceType" className="form-control">
+								<select
+									// as="select"
+									name="serviceType"
+									className="form-control"
+								>
 									<option value="">Select Service Type</option>
 									<option value="male">Male</option>
 									<option value="female">Female</option>
-								</Field>
+								</select>
 								<ErrorMessage
 									name="serviceType"
 									component="div"
@@ -190,7 +194,7 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Date</label>
-								<Field
+								<input
 									type="date"
 									name="serviceDate"
 									className="form-control"
@@ -204,7 +208,7 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Time</label>
-								<Field
+								<input
 									type="time"
 									name="serviceTime"
 									className="form-control"
@@ -218,17 +222,19 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Description</label>
-								<Field
-									as="textarea"
+								<textarea
+									// {/* <Field  */}
+									// as="textarea"
 									name="description"
 									placeholder="Enter Description"
 									className="form-control"
-								/>
-								<ErrorMessage
-									name="description"
-									component="div"
-									className="error-message"
-								/>
+								>
+									<ErrorMessage
+										name="description"
+										component="div"
+										className="error-message"
+									/>
+								</textarea>
 							</div>
 
 							{/* Submit Button */}
