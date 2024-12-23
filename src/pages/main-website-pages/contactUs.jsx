@@ -145,7 +145,7 @@ const ContactUsPage = () => {
 					</div>
 				</div>
 			</div>
-			<BookingReceipt />
+			{/* <BookingReceipt /> */}
 		</>
 	);
 };
