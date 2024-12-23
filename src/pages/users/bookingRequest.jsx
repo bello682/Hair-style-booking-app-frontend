@@ -21,7 +21,9 @@ const BookingForm = () => {
 		serviceType: Yup.string().required("Service type is required"),
 		serviceDate: Yup.date().required("Service date is required"),
 		serviceTime: Yup.string().required("Service time is required"),
-		description: Yup.string().max(500, "Description too long"),
+		description: Yup.string()
+			.required("Description can not be empty")
+			.max(500, "Description too long"),
 	});
 
 	const initialValues = {
@@ -100,8 +102,8 @@ const BookingForm = () => {
 							{/* Image Source Selection */}
 							<div className="form-group">
 								<label>Image Source</label>
-								<select
-									// as="select"
+								<Field
+									as="select"
 									name="imageSource"
 									className="form-control ImageSource__select__image"
 									onChange={(e) => {
@@ -117,7 +119,7 @@ const BookingForm = () => {
 									<option value="">Select Image Source</option>
 									<option value="device">Device</option>
 									<option value="web">Web</option>
-								</select>
+								</Field>
 								<ErrorMessage
 									name="imageSource"
 									component="div"
@@ -161,7 +163,7 @@ const BookingForm = () => {
 							{/* Other Fields */}
 							<div className="form-group">
 								<label>Hair Style Name</label>
-								<input
+								<Field
 									type="text"
 									name="hairStyleName"
 									placeholder="Enter Hair Style Name"
@@ -176,15 +178,11 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Type</label>
-								<select
-									// as="select"
-									name="serviceType"
-									className="form-control"
-								>
+								<Field as="select" name="serviceType" className="form-control">
 									<option value="">Select Service Type</option>
 									<option value="male">Male</option>
 									<option value="female">Female</option>
-								</select>
+								</Field>
 								<ErrorMessage
 									name="serviceType"
 									component="div"
@@ -194,7 +192,7 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Date</label>
-								<input
+								<Field
 									type="date"
 									name="serviceDate"
 									className="form-control"
@@ -208,7 +206,7 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Service Time</label>
-								<input
+								<Field
 									type="time"
 									name="serviceTime"
 									className="form-control"
@@ -222,19 +220,17 @@ const BookingForm = () => {
 
 							<div className="form-group">
 								<label>Description</label>
-								<textarea
-									// {/* <Field  */}
-									// as="textarea"
+								<Field
+									as="textarea"
 									name="description"
 									placeholder="Enter Description"
 									className="form-control"
-								>
-									<ErrorMessage
-										name="description"
-										component="div"
-										className="error-message"
-									/>
-								</textarea>
+								/>
+								<ErrorMessage
+									name="description"
+									component="div"
+									className="error-message"
+								/>
 							</div>
 
 							{/* Submit Button */}
