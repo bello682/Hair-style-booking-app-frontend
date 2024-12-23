@@ -136,14 +136,27 @@
 		border: 1px solid #ccc;
 		border-radius: 10px; */
 
-		display: block;
+		/* display: block;
 		width: 100%;
 		max-width: 100%;
 		padding: 10px;
 		border: 1px solid #ccc;
 		border-radius: 10px;
-		margin-bottom: 15px; /* Ensures spacing between fields */
-		font-size: 15px; /* Adjust as needed for readability */
+		margin-bottom: 15px; 
+		font-size: 15px;  */
+
+		outline: none;
+		margin-bottom: 15px;
+		font-stretch: 16px;
+		color: #999;
+		text-align: left;
+		padding: 14px 20px;
+		width: 100%;
+		display: inline-block;
+		box-sizing: border-box;
+		border: none;
+		background: #f7fafc;
+		transition: 0.3s ease;
 	}
 }
 
@@ -153,15 +166,18 @@
 		padding: 10px;
 		border: 1px solid #ccc;
 		border-radius: 10px; */
-
-		display: block;
+		outline: none;
+		margin-bottom: 15px;
+		font-stretch: 16px;
+		color: #999;
+		text-align: left;
+		padding: 14px 20px;
 		width: 100%;
-		max-width: 100%;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 10px;
-		margin-bottom: 15px; /* Ensures spacing between fields */
-		font-size: 15px; /* Adjust as needed for readability */
+		display: inline-block;
+		box-sizing: border-box;
+		border: none;
+		background: #f7fafc;
+		transition: 0.3s ease;
 	}
 }
 
