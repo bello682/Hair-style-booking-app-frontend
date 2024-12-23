@@ -33,11 +33,11 @@
 	background-color: transparent !important;
 }
 
-.booking-form .form-group {
+.booking-form .form_group_div {
 	margin-bottom: 15px;
 }
 
-.booking-form .form-control {
+.booking-form .form_control_Input {
 	width: 100% !important;
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -130,7 +130,7 @@
 		flex-direction: column;
 	}
 
-	.form-group .form-control {
+	.form_group_div .form_control_Input {
 		/* width: 100% !important;
 		padding: 10px;
 		border: 1px solid #ccc;
@@ -148,7 +148,7 @@
 }
 
 @media only screen and (max-width: 375px) {
-	.form-group .form-control {
+	.form_group_div .form_control_Input {
 		/* width: 100% !important;
 		padding: 10px;
 		border: 1px solid #ccc;

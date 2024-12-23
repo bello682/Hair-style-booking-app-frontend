@@ -100,12 +100,12 @@ const BookingForm = () => {
 					{({ setFieldValue }) => (
 						<Form className="booking-form">
 							{/* Image Source Selection */}
-							<div className="form-group">
+							<div className="form_group_div">
 								<label>Image Source</label>
 								<Field
 									as="select"
 									name="imageSource"
-									className="form-control ImageSource__select__image"
+									className="form_control_Input ImageSource__select__image"
 									onChange={(e) => {
 										const value = e.target.value;
 										setFieldValue("imageSource", value);
@@ -161,13 +161,13 @@ const BookingForm = () => {
 							)}
 
 							{/* Other Fields */}
-							<div className="form-group">
+							<div className="form_group_div">
 								<label>Hair Style Name</label>
 								<Field
 									type="text"
 									name="hairStyleName"
 									placeholder="Enter Hair Style Name"
-									className="form-control"
+									className="form_control_Input"
 								/>
 								<ErrorMessage
 									name="hairStyleName"
@@ -176,9 +176,13 @@ const BookingForm = () => {
 								/>
 							</div>
 
-							<div className="form-group">
+							<div className="form_group_div">
 								<label>Service Type</label>
-								<Field as="select" name="serviceType" className="form-control">
+								<Field
+									as="select"
+									name="serviceType"
+									className="form_control_Input"
+								>
 									<option value="">Select Service Type</option>
 									<option value="male">Male</option>
 									<option value="female">Female</option>
@@ -190,12 +194,12 @@ const BookingForm = () => {
 								/>
 							</div>
 
-							<div className="form-group">
+							<div className="form_group_div">
 								<label>Service Date</label>
 								<Field
 									type="date"
 									name="serviceDate"
-									className="form-control"
+									className="form_control_Input"
 								/>
 								<ErrorMessage
 									name="serviceDate"
@@ -204,12 +208,12 @@ const BookingForm = () => {
 								/>
 							</div>
 
-							<div className="form-group">
+							<div className="form_group_div">
 								<label>Service Time</label>
 								<Field
 									type="time"
 									name="serviceTime"
-									className="form-control"
+									className="form_control_Input"
 								/>
 								<ErrorMessage
 									name="serviceTime"
@@ -218,13 +222,13 @@ const BookingForm = () => {
 								/>
 							</div>
 
-							<div className="form-group">
+							<div className="form_group_div">
 								<label>Description</label>
 								<Field
 									as="textarea"
 									name="description"
 									placeholder="Enter Description"
-									className="form-control"
+									className="form_control_Input"
 								/>
 								<ErrorMessage
 									name="description"
