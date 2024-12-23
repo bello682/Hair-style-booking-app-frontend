@@ -6,6 +6,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { SiInstagram } from "react-icons/si";
+import BookingReceipt from "../../components/bookingReceipt/bookingReceiptPdf";
 
 const ContactUsPage = () => {
 	const [formData, setFormData] = useState({
@@ -64,84 +65,88 @@ const ContactUsPage = () => {
 	};
 
 	return (
-		<div className="contact-page">
-			<div className="hero-section">
-				<div className="hero-text">
-					<h1>About Us</h1>
-					<p>
-						Welcome to <strong>HairStyle Booking App</strong>, your ultimate
-						platform for booking professional hair styling services. We connect
-						you with top-rated hairstylists for a seamless booking experience.
-						Our goal is to ensure you look your best with ease and convenience.
-					</p>
-					<p>
-						Whether you need a haircut, coloring, or a stylish updo for an
-						event, we've got you covered. Book now to experience a blend of
-						professionalism and creativity tailored to your unique style.
-					</p>
-					<div className="social-icons">
-						<a
-							href="https://facebook.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FaFacebookF />
-						</a>
-						<a
-							href="https://twitter.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<BsTwitterX />
-						</a>
-						<a
-							href="https://instagram.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<SiInstagram />
-						</a>
-						<a
-							href="https://linkedin.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<BsLinkedin />
-						</a>
+		<>
+			<div className="contact-page">
+				<div className="hero-section">
+					<div className="hero-text">
+						<h1>About Us</h1>
+						<p>
+							Welcome to <strong>HairStyle Booking App</strong>, your ultimate
+							platform for booking professional hair styling services. We
+							connect you with top-rated hairstylists for a seamless booking
+							experience. Our goal is to ensure you look your best with ease and
+							convenience.
+						</p>
+						<p>
+							Whether you need a haircut, coloring, or a stylish updo for an
+							event, we've got you covered. Book now to experience a blend of
+							professionalism and creativity tailored to your unique style.
+						</p>
+						<div className="social-icons">
+							<a
+								href="https://facebook.com"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<FaFacebookF />
+							</a>
+							<a
+								href="https://twitter.com"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<BsTwitterX />
+							</a>
+							<a
+								href="https://instagram.com"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<SiInstagram />
+							</a>
+							<a
+								href="https://linkedin.com"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<BsLinkedin />
+							</a>
+						</div>
+					</div>
+					<div className="hero-form">
+						<h2>Contact Us</h2>
+						<form onSubmit={handleSubmit}>
+							<input
+								type="text"
+								name="fullName"
+								placeholder="Full Name"
+								value={formData.fullName}
+								onChange={handleChange}
+								required
+							/>
+							<input
+								type="email"
+								name="email"
+								placeholder="Email Address"
+								value={formData.email}
+								onChange={handleChange}
+								required
+							/>
+							<textarea
+								name="message"
+								placeholder="Your Message"
+								value={formData.message}
+								onChange={handleChange}
+								required
+							/>
+							<button type="submit">Send Message</button>
+						</form>
+						{status && <p className="status-message">{status}</p>}
 					</div>
 				</div>
-				<div className="hero-form">
-					<h2>Contact Us</h2>
-					<form onSubmit={handleSubmit}>
-						<input
-							type="text"
-							name="fullName"
-							placeholder="Full Name"
-							value={formData.fullName}
-							onChange={handleChange}
-							required
-						/>
-						<input
-							type="email"
-							name="email"
-							placeholder="Email Address"
-							value={formData.email}
-							onChange={handleChange}
-							required
-						/>
-						<textarea
-							name="message"
-							placeholder="Your Message"
-							value={formData.message}
-							onChange={handleChange}
-							required
-						/>
-						<button type="submit">Send Message</button>
-					</form>
-					{status && <p className="status-message">{status}</p>}
-				</div>
 			</div>
-		</div>
+			<BookingReceipt />
+		</>
 	);
 };
 

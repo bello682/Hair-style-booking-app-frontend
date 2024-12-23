@@ -1,0 +1,207 @@
+/* ==================================================  
+    27. TRANSACTION RECEIPT 
+================================================== */
+.section_wrapper {
+	width: 100%;
+	max-width: 800px;
+	padding: 1rem;
+	background: white;
+	box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	margin: 2rem auto auto auto;
+}
+
+.cos_mail {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.7rem;
+	margin-bottom: 3rem;
+}
+
+.cos_mail p {
+	font-weight: 600;
+	font-size: 13px;
+}
+
+.logo_address {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto auto 1rem auto;
+}
+
+.logo___receipt___ {
+	width: 130px;
+	margin-bottom: 2rem;
+}
+
+.logo___receipt___ .receipt__logo_img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.logo_address p {
+	font-weight: 600;
+	font-size: 13px;
+}
+
+.transaction_info {
+	background: #fffafa;
+	padding: 1rem 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.transaction_details_modal_receipt .transaction_info h1 {
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.check_div {
+	width: 23px;
+	aspect-ratio: 1/1;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #008000;
+	background: #008000;
+	border-radius: 50%;
+	margin-right: 7px;
+	position: relative;
+}
+
+.check {
+	font-size: 12px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: white;
+	transform: translate(-50%, -50%);
+}
+
+.success_text {
+	color: #008000;
+}
+
+.amount_aud {
+	display: flex;
+	justify-content: space-between;
+	margin: auto 1rem;
+}
+
+.amount_aud p {
+	font-weight: 600;
+}
+
+.table_transaction_user_info {
+	background: #fff;
+	margin-top: 1rem;
+	padding: 0 1rem;
+}
+
+.table_info {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+.table_info h2 {
+	font-size: 15px;
+	font-weight: 600;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	text-align: center;
+}
+
+.table_info table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.comment-Warning {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.table_info tr {
+	display: flex;
+}
+
+.table_info tr td {
+	border: 0.1rem solid #ccc;
+	width: 50%;
+	display: flex;
+	place-items: center;
+	justify-content: center;
+}
+
+.transaction_result {
+	width: 100%;
+	display: flex;
+	text-wrap: wrap;
+	text-align: center;
+	margin: auto;
+	padding: 10px;
+}
+
+.transaction_result p {
+	width: 100%;
+	overflow-wrap: break-word;
+}
+
+.note {
+	background: #fffafa;
+	margin-top: 1rem;
+	padding: 0 1rem;
+}
+
+.note h2 {
+	font-size: 15px;
+	font-weight: 600;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.note p {
+	max-width: fit-content;
+	font-size: 12px;
+	padding: 0 0 0.5rem 0;
+}
+
+.btn_share {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1.5rem 0;
+	gap: 1rem;
+}
+
+.btn_share button {
+	display: block;
+	background: red;
+	color: white;
+	border: none;
+	padding: 10px 1rem;
+	border-radius: 10px;
+}
+
+.footer_receipt_transaction {
+	width: 100%;
+	margin-top: 4rem;
+}
+
+.footer_receipt_transaction small {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	font-weight: 500;
+}
