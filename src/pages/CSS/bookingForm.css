@@ -131,20 +131,6 @@
 	}
 
 	.form_group_div .form_control_Input {
-		/* width: 100% !important;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 10px; */
-
-		/* display: block;
-		width: 100%;
-		max-width: 100%;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 10px;
-		margin-bottom: 15px; 
-		font-size: 15px;  */
-
 		outline: none;
 		font-size: 15px;
 		margin-bottom: 15px;
@@ -164,10 +150,6 @@
 
 @media only screen and (max-width: 375px) {
 	.form_group_div .form_control_Input {
-		/* width: 100% !important;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 10px; */
 		outline: none;
 		margin-bottom: 15px;
 		font-stretch: 16px;
