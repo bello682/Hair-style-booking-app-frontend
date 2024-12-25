@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useDispatch, useSelector } from "react-redux";
 import { FaCheck } from "react-icons/fa6";
 import "../../pages/CSS/bookingReceiptpdf.css";
 import imageLogoreceipt from "../../asset/images/websiteLogo.png";
 
-const BookingReceipt = () => {
+const BookingReceipt = ({
+	status,
+	booking_status,
+	request_date,
+	service_date,
+	service_time,
+	reference_number,
+	service_type,
+	hairStyle_name,
+	description,
+	fullName,
+	email,
+	phone_number,
+	viewLargeImage,
+	handleLargeImage,
+}) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	const formRef = useRef();
+
+	const handleDownload = () => {
+		const input = formRef.current;
+		html2canvas(input).then((canvas) => {
+			const imgData = canvas.toDataURL("image/png");
+			const pdf = new jsPDF();
+			pdf.addImage(imgData, "PNG", 0, 0);
+			pdf.save("Booking-Receipt.pdf");
+		});
+	};
+
+	const handleBackHome = () => {
+		navigate("/");
+	};
+
 	return (
 		<>
-			<section className="section_wrapper">
+			<section className="section_wrapper" ref={formRef}>
 				<div className="cos_mail">
 					<p>Albertsons</p>
 					<p>
@@ -32,16 +65,13 @@ const BookingReceipt = () => {
 								className="receipt__logo_img"
 							/>
 						</div>
-						<p>
-							Level 14, 3 Parramatta Square, 153 Macquarie Street Parramatta NSW
-							2150.
-						</p>
-						<p>Email: admin@cosmoremit.com.au</p>
-						<p>Phone: (02) 96 159 832, (+61) 414 151 549, (+61) 470 628 369</p>
+						<p>No 190, Lekki Way, Lagos, Nigeria.</p>
+						<p>Email: Albertsonscustomer@gmail.com</p>
+						<p>Phone: (+234) 803 778 737, (+234) 907 646 999 </p>
 					</div>
 					<div className="transaction_info">
 						<div>
-							<h1 className="text-center text-10">-Love AUD</h1>
+							<h1 className="text-center text-10">{fullName}</h1>
 						</div>
 						<div
 							style={{
@@ -54,69 +84,97 @@ const BookingReceipt = () => {
 							<div className="check_div">
 								<FaCheck className="check" />
 							</div>{" "}
-							<span className="success_text">Initiated</span>
+							<span className="success_text">{status}</span>
 						</div>
 						<div className="amount_aud">
-							{/* <p>Amount</p> */}
-							<p>
-								{/* {localStorage.getItem("trx_sendVal")}{" "}
-								{localStorage.getItem("trx_fromCountryCurency")} */}
-								{/* {?.send_amount} AUD */}
-							</p>
+							{/* <p>Full Name</p> */}
+							{/* <p>{fullName}</p> */}
 						</div>
 					</div>
 					<div className="table_transaction_user_info">
 						<div className="table_info">
-							<h2>Transaction Details</h2>
+							<h2>Booking Details</h2>
 							<table>
 								<tr>
-									<td>Transaction Type</td>
+									<td>Reference Number</td>
 									<td>
 										<div className="transaction_result">
-											<p>Imcoming text</p>
+											<p>{reference_number}</p>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>Transaction ID</td>
+									<td>Booking Status</td>
 									<td>
 										<div className="transaction_result">
-											<p>reference number</p>
-										</div>
-									</td>
-								</tr>
-
-								{/* <tr>
-									<td>Payment Method</td>
-									<td>
-										<div className="transaction_result">
-											<p>{?.transaction_details?.payin}</p>
-										</div>
-									</td>
-								</tr> */}
-								<tr>
-									<td>Bank</td>
-									<td>
-										<div className="transaction_result">
-											<p>Just guess</p>
+											<p>{booking_status}</p>
 										</div>
 									</td>
 								</tr>
 
 								<tr>
-									<td className="td__1">Recipient Details</td>
+									<td>Hair Style Name</td>
+									<td>
+										<div className="transaction_result">
+											<p>{hairStyle_name}</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Email</td>
+									<td>
+										<div className="transaction_result">
+											<p>{email}</p>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td className="td__1">Phone Number</td>
 									<td className="td__2">
 										<div className="transaction_result">
-											<p>transactions numbers</p>
+											<p>{phone_number}</p>
 										</div>
 									</td>
 								</tr>
 
 								<tr>
-									<td>Transaction Date</td>
+									<td>Gender</td>
 									<td>
 										<div className="transaction_result">
-											<p>Time date</p>
+											<p>{service_type}</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Description</td>
+									<td>
+										<div className="transaction_result">
+											<p>{description}</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Requested Date</td>
+									<td>
+										<div className="transaction_result">
+											<p>{request_date}</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Service Date </td>
+									<td>
+										<div className="transaction_result">
+											<p>{service_date}</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Service Time </td>
+									<td>
+										<div className="transaction_result">
+											<p>{service_time} </p>
 										</div>
 									</td>
 								</tr>
@@ -127,22 +185,23 @@ const BookingReceipt = () => {
 					<div className="note">
 						<h2>Note</h2>
 						<p>
-							Payment must come from the sender's account only, kindly input
-							only your transaction reference number in your payment description
-							to avoid delay in your transaction, your transaction reference
-							number is
+							Payment must come from the Requested user's account only, kindly
+							input only your transaction reference number in your payment
+							description to avoid delay in your transaction, your transaction
+							reference number is
 						</p>
 					</div>
 				</section>
 
-				<div className="btn_share">
-					<button>Download Receipt</button>
-					<button>Back to Home Page</button>
-				</div>
 				<div className="footer_receipt_transaction">
-					<small>2024 CosmoRemit | All Rights Reserved</small>
+					<small>2024 Albertsons | All Rights Reserved</small>
 				</div>
 			</section>
+			<div className="btn_share">
+				<button onClick={handleDownload}>Download Receipt</button>
+				<button onClick={handleBackHome}>Back to Home Page</button>
+				<button onClick={handleLargeImage}>{viewLargeImage}</button>
+			</div>
 		</>
 	);
 };

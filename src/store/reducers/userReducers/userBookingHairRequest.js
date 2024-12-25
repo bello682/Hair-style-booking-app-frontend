@@ -1,7 +1,7 @@
 import * as actionTypes from "../../actionType/userActionType/userBookingHairRequest";
 
 const initialState = {
-	booking: [],
+	booking: {},
 	loading: false,
 	error: null,
 };

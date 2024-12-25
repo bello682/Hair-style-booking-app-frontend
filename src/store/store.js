@@ -24,6 +24,7 @@ import {
 	otherUploadReducer,
 } from "./reducers/adminReducers/imagesUploadReducer";
 import getUserDataReducerState from "./reducers/userReducers/getUserDataReducers";
+import { getUserProfileReducer } from "./reducers/userReducers/getUserProfileReducers";
 
 const reducer = combineReducers({
 	registrationReducerUser: userReducer,
@@ -46,6 +47,7 @@ const reducer = combineReducers({
 	othersStateReducer: otherUploadReducer,
 	getallUploadStateReducer: getAllUploadsReducer,
 	getUserDataFetch: getUserDataReducerState,
+	getUserProfileState: getUserProfileReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));

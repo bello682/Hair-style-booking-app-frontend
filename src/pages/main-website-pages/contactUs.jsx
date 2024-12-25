@@ -6,7 +6,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { SiInstagram } from "react-icons/si";
-import BookingReceipt from "../../components/bookingReceipt/bookingReceiptPdf";
 
 const ContactUsPage = () => {
 	const [formData, setFormData] = useState({
@@ -145,7 +144,6 @@ const ContactUsPage = () => {
 					</div>
 				</div>
 			</div>
-			{/* <BookingReceipt /> */}
 		</>
 	);
 };

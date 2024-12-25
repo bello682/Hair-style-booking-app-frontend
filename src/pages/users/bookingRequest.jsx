@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -6,14 +6,18 @@ import { bookHairService } from "../../store/action/userActions/userBookingHairR
 import "../CSS/bookingForm.css";
 import GlobalImageModal from "./../../components/webImagesToSelect";
 import NotificationList from "./getNotifications/getNotifications";
+import { useNavigate } from "react-router-dom";
 
 const BookingForm = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedImages, setSelectedImages] = useState([]);
-	const { loading, booking, error } = useSelector(
-		(state) => state.bookingRquestState
-	);
+	const {
+		loading,
+		booking: { booking },
+		error,
+	} = useSelector((state) => state.bookingRquestState);
 
 	const validationSchema = Yup.object({
 		imageSource: Yup.string().required("Select an image source"),
@@ -69,12 +73,11 @@ const BookingForm = () => {
 		// Add other form fields to FormData
 		Object.keys(values).forEach((key) => {
 			if (key !== "imageSource") {
-				// Exclude "imageSource"
 				formData.append(key, values[key]);
 			}
 		});
 
-		dispatch(bookHairService(formData)); // Dispatch FormData to backend
+		dispatch(bookHairService(formData));
 	};
 
 	// When web image is selected in modal
@@ -84,6 +87,12 @@ const BookingForm = () => {
 			{ url: image.imageUrl, file: null }, // Add web URL to selectedImages
 		]);
 	};
+
+	useEffect(() => {
+		if (booking) {
+			navigate("/booking-receipt");
+		}
+	}, [booking]);
 
 	return (
 		<>

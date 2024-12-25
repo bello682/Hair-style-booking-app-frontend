@@ -1,10 +1,10 @@
 import { getStoredDeviceId } from "../../../utils/authStorage";
+import axiosInstance from "../../../utils/axiosInstance";
 import * as actionTypes from "../../actionType/userActionType/getUserDataActionTypes";
 import axios from "axios";
 
 const BASE_URL =
-	// process.env.REACT_APP_BASE_URL ||
-	"http://localhost:8006/Api_Url";
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 
 const userId = localStorage.getItem("userId");
 const deviceId = getStoredDeviceId();
@@ -14,7 +14,7 @@ export const getUserDataStart = () => async (dispatch) => {
 	dispatch({ type: actionTypes.GET_USER_DATA_REQUEST });
 
 	try {
-		const response = await axios.get(
+		const response = await axiosInstance.get(
 			`${BASE_URL}/HairStyleUsers/user/${userId}`,
 			{
 				headers: {

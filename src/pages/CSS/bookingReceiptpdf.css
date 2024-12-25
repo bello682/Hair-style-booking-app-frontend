@@ -10,7 +10,7 @@
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
-	margin: 2rem auto auto auto;
+	margin: 5rem auto auto auto;
 }
 
 .cos_mail {
@@ -141,6 +141,7 @@
 	display: flex;
 	place-items: center;
 	justify-content: center;
+	color: black;
 }
 
 .transaction_result {
@@ -155,6 +156,7 @@
 .transaction_result p {
 	width: 100%;
 	overflow-wrap: break-word;
+	color: black;
 }
 
 .note {

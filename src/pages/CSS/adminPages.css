@@ -265,6 +265,7 @@
 	overflow-y: auto;
 	padding: 20px 20px;
 	color: rgba(255, 255, 255, 0.95);
+	margin-top: 3rem;
 }
 
 .button_request_view {
@@ -330,7 +331,7 @@
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	width: 80%;
-	max-width: 600px;
+	max-width: 900px;
 	position: relative;
 	animation: fadeIn 0.3s ease-in-out;
 	color: #333;
