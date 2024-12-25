@@ -6,6 +6,7 @@ import DataTable from "react-data-table-component";
 import "../../CSS/adminPages.css";
 import BookingReceipt from "../../../components/bookingReceipt/bookingReceiptPdf";
 import Loader from "../../../components/loader";
+import { IoMdInformationCircle } from "react-icons/io";
 
 const UserProfileDataTableStored = () => {
 	const dispatch = useDispatch();
@@ -108,7 +109,13 @@ const UserProfileDataTableStored = () => {
 	}
 
 	if (error) {
-		return <p>Error: {error}</p>;
+		return (
+			<div style={{ textAlign: "center", marginTop: "6rem" }}>
+				<IoMdInformationCircle size={60} color="#fff" />
+				<p>Error: {error}</p>
+			</div>
+		);
+		return;
 	}
 
 	return (
