@@ -114,14 +114,6 @@ const HomePage = () => {
 		dispatch(getUserDataStart());
 	}, []);
 
-	const handleBookNowClick = () => {
-		if (isVerified) {
-			navigation("/booking/hair-service");
-		} else {
-			navigation("/user-signUp");
-		}
-	};
-
 	const services_text = [
 		{
 			name: "Welcome! We’re here to simplify life for you",
@@ -172,9 +164,11 @@ const HomePage = () => {
 
 						<div className="btn_box">
 							<a href="/tour-our-services">Take a Tour</a>
-							<a href="#" onClick={handleBookNowClick}>
-								Book Now
-							</a>
+							{isVerified ? (
+								<a href="/booking/hair-service">Book Now</a>
+							) : (
+								<a href="/user-signUp">Sign-Up</a>
+							)}
 						</div>
 
 						<div className="home_sci">
