@@ -95,17 +95,24 @@ import image4 from "../../../src/asset/images/images 4.jpg";
 import image5 from "../../../src/asset/images/image 5.jpg";
 import Carousel from "../../components/Carousel";
 import { useNavigate } from "react-router-dom";
+import { getUserDataStart } from "../../store/action/userActions/get UserDataActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentTextIndex, setCurrentTextIndex] = useState(0);
 	const navigation = useNavigate();
-
-	const isVerified = localStorage.getItem("isVerified");
+	const dispatch = useDispatch();
+	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
+	const isVerified = userDataFectched?.user?.isVerified;
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
+
+	useEffect(() => {
+		dispatch(getUserDataStart());
+	}, []);
 
 	const handleBookNowClick = () => {
 		if (isVerified) {
