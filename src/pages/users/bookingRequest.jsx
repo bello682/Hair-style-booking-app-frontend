@@ -208,7 +208,7 @@ const BookingForm = () => {
 								<Field
 									type="date"
 									name="serviceDate"
-									className="form_control_Input"
+									className="form_control_Input time_date_input"
 								/>
 								<ErrorMessage
 									name="serviceDate"
@@ -222,7 +222,7 @@ const BookingForm = () => {
 								<Field
 									type="time"
 									name="serviceTime"
-									className="form_control_Input"
+									className="form_control_Input time_date_input"
 								/>
 								<ErrorMessage
 									name="serviceTime"
