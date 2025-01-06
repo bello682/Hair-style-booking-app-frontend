@@ -228,7 +228,7 @@ const UserSignUp = () => {
 					</div>
 				</div>
 			</div>
-			<UserChat />
+			{/* <UserChat /> */}
 		</div>
 	);
 };
