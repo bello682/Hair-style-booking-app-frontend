@@ -142,9 +142,17 @@ const UserSignUp = () => {
 							validationSchema={Yup.object({
 								fullName: Yup.string().required("Full name is required"),
 								email: Yup.string()
-									.email("Invalid email address")
+									.matches(
+										/^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+										"Please enter a valid Gmail address (e.g., example@gmail.com)"
+									)
 									.required("Email is required"),
-								phoneNumber: Yup.string().required("Phone number is required"),
+								phoneNumber: Yup.string()
+									.matches(
+										/^(080|070|090|081)\d{8}$/,
+										"Phone number must start with 080, 070, 090, or 081 and be 11 digits long"
+									)
+									.required("Phone number is required"),
 							})}
 							onSubmit={(values) => {
 								dispatch(registerUser(values));

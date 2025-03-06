@@ -12,9 +12,9 @@ body {
 	background: #081b29;
 }
 
-.main_body {
+.main_body_home {
 	margin: 0;
-	padding-top: 45px; /* Adjust if the navbar height changes */
+	padding-top: 45px;
 	background: #081b29;
 }
 
@@ -453,7 +453,7 @@ body {
 		text-align: center;
 	} */
 
-	.main_body {
+	.main_body_home {
 		margin: 0;
 		padding-top: 20px; /* Adjust if the navbar height changes */
 		background: #081b29;

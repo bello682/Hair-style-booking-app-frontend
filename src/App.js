@@ -88,6 +88,7 @@ import AdminNotificationList from "./pages/admin/adminPages/CreateNotification/a
 import ContactUsPage from "./pages/main-website-pages/contactUs";
 import UserReceiptBooked from "./pages/users/userReceiptBooked";
 import UserProfileDataTableStored from "./pages/users/dashboard/userProfileDatas";
+import DashboardLayout from "./pages/users/dashboard/dashboardComponent/dashboardLayoutView";
 
 function App() {
 	const location = useLocation();
@@ -107,6 +108,7 @@ function App() {
 					<Route path="/booking/hair-service" element={<BookingForm />} />
 					<Route path="/tour-our-services" element={<GetAllImagesTour />} />
 					<Route path="/contact-us" element={<ContactUsPage />} />
+					<Route path="/user-dashboard" element={<DashboardLayout />} />
 					<Route path="/booking-receipt" element={<UserReceiptBooked />} />
 					<Route
 						path="/User-profiler-page"

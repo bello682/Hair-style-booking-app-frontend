@@ -152,7 +152,7 @@ const HomePage = () => {
 	const text = services_text[currentTextIndex];
 
 	return (
-		<div className="main_body">
+		<div className="main_body_home">
 			<div>
 				<section className="home_View">
 					<div className="home_view_sub">
