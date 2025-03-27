@@ -80,6 +80,7 @@ import { adminVerifyOtp } from "../../store/action/adminActions/adminVerifyOtpAc
 import "../CSS/testing.css";
 import bg from "../../../src/asset/images/bg.png";
 import { Link } from "react-router-dom";
+import { Spin } from "antd";
 
 const AdminVerifyOtp = () => {
 	const dispatch = useDispatch();
@@ -158,13 +159,19 @@ const AdminVerifyOtp = () => {
 									</div>
 
 									<button className="btn" type="submit" disabled={loading}>
-										{loading ? "Verifying..." : "Verify OTP"}
+										{loading ? (
+											<>
+												Verifying... <Spin />
+											</>
+										) : (
+											"Verify OTP"
+										)}
 									</button>
 
-									{error && <div className="error">{error.message}</div>}
+									{/* {error && <div className="error">{error.message}</div>}
 									{successMessage && (
 										<div className="success">{successMessage}</div>
-									)}
+									)} */}
 								</form>
 							)}
 						</Formik>

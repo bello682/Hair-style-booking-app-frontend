@@ -58,6 +58,7 @@ body {
 	box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
 	border-top-left-radius: 8px;
 	border-bottom-left-radius: 8px;
+	/* order: 2; */
 }
 .form-img {
 	flex-basis: 50%;
@@ -79,6 +80,7 @@ body {
 	border-bottom-right-radius: 8px;
 	align-items: center;
 	display: grid;
+	/* order: 1; */
 }
 .form-img img {
 	max-width: 100%;
@@ -177,6 +179,10 @@ p.account a:hover {
 		border-top-right-radius: 8px;
 	}
 
+	.form-img-signup {
+		order: 2;
+	}
+
 	.container {
 		max-width: 800px;
 		margin: 0 auto;
@@ -193,7 +199,7 @@ p.account a:hover {
 		border-radius: 0;
 		border-bottom-left-radius: 8px;
 		border-bottom-right-radius: 8px;
-		order: 1;
+		order: 2;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -203,14 +209,14 @@ p.account a:hover {
 		border-radius: 0;
 		border-bottom-left-radius: 8px;
 		border-bottom-right-radius: 8px;
-		order: 1;
+		order: 2;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
 	.content {
-		order: 2;
+		order: 1;
 		border-radius: 0;
 		border-top-left-radius: 8px;
 		border-top-right-radius: 8px;

@@ -71,6 +71,8 @@ import "../CSS/testing.css";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
+import Loader from "../../components/loader";
+
 const AdminLoginForm = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -95,6 +97,15 @@ const AdminLoginForm = () => {
 		dispatch(loginAdminAction(values.email, values.password));
 		setSubmitting(false);
 	};
+
+	if (loading) {
+		return (
+			<div className="h-screen flex justify-center items-center">
+				<Loader />
+				<p className="mx-5 text-2xl text-white">Processing....</p>
+			</div>
+		);
+	}
 
 	return (
 		<div className="login-form">
@@ -142,7 +153,7 @@ const AdminLoginForm = () => {
 										type="submit"
 										disabled={isSubmitting || loading}
 									>
-										{loading ? "Logging in..." : "Login"}
+										{loading ? `Logging in... ` : "Login"}
 									</button>
 
 									{error && <div className="error">{error}</div>}

@@ -52,16 +52,19 @@
 // export default AdminResendOtpPage;
 
 // src/pages/AdminResendOtpPage.js
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { adminResendOtp } from "../../store/action/adminActions/adminResendOtpAction";
 import "../CSS/testing.css";
 import bg from "../../../src/asset/images/bg.png";
+import { Spin } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const AdminResendOtpPage = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { loading, message, error } = useSelector(
 		(state) => state.adminResendOtpReducerState
 	);
@@ -76,6 +79,12 @@ const AdminResendOtpPage = () => {
 	const handleSubmit = (values) => {
 		dispatch(adminResendOtp(values.email));
 	};
+
+	useEffect(() => {
+		if (message) {
+			navigate("/admin-verification");
+		}
+	}, [message, navigate]);
 
 	return (
 		<div className="login-form">
@@ -107,14 +116,20 @@ const AdminResendOtpPage = () => {
 									</div>
 
 									<button className="btn" type="submit" disabled={loading}>
-										{loading ? "Resending..." : "Resend OTP"}
+										{loading ? (
+											<>
+												Resending... <Spin />
+											</>
+										) : (
+											"Resend OTP"
+										)}
 									</button>
 								</Form>
 							)}
 						</Formik>
 
-						{message && <p className="success">{message}</p>}
-						{error && <p className="error">{error}</p>}
+						{/* {message && <p className="success">{message}</p>}
+						{error && <p className="error">{error}</p>} */}
 					</div>
 					<div className="form-img">
 						<img src={bg} alt="Background" />

@@ -169,6 +169,7 @@ import { registerAdmin } from "./../../store/action/adminActions/registrationAct
 import "../CSS/testing.css";
 import bg from "../../asset/images/bg.png";
 import PasswordValidator from "./../../components/passwordCheckList";
+import { Spin } from "antd";
 
 const AdminSignUp = () => {
 	const dispatch = useDispatch();
@@ -276,7 +277,13 @@ const AdminSignUp = () => {
 									</div>
 
 									<button className="btn" type="submit" disabled={loading}>
-										{loading ? "Registering..." : "Register"}
+										{loading ? (
+											<>
+												Registering... <Spin />
+											</>
+										) : (
+											"Register"
+										)}
 									</button>
 
 									{error && (
