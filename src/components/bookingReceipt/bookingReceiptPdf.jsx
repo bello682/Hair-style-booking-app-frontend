@@ -48,7 +48,7 @@ const BookingReceipt = ({
 				<div className="cos_mail">
 					<p>Albertsons</p>
 					<p>
-						<a href="https://vercel.com/bello-adetayo-olamijis-projects/hair-style-booking-app-frontend">
+						<a href="https://hair-style-booking-app-frontend.vercel.app/">
 							Albertsons.com
 						</a>
 					</p>
