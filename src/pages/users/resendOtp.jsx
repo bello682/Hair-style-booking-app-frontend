@@ -51,16 +51,18 @@
 // export default ResendOtpPage;
 
 // ResendOtpPage.js
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { resendOtp } from "../../store/action/userActions/resendUserOtpAction";
 import "../CSS/testing.css";
 import bg from "../../../src/asset/images/bg.png";
+import { useNavigate } from "react-router";
 
 const ResendOtpPage = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { loading, message, error } = useSelector(
 		(state) => state.resendOtpReducerState
 	);
@@ -71,6 +73,13 @@ const ResendOtpPage = () => {
 			.email("Invalid email format")
 			.required("Email is required"),
 	});
+
+	useEffect(() => {
+		// Navigate only if OTP verification is successful
+		if (message) {
+			navigate("/verify-otp");
+		}
+	}, [message, navigate]);
 
 	const handleSubmit = (values) => {
 		dispatch(resendOtp(values.email));

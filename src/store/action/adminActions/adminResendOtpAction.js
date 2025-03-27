@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/adminResendActionType";
+import { success, error } from "../../../notifivations/notification";
 
 const BASE_URL =
 	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
@@ -35,12 +36,22 @@ export const adminResendOtp = (email) => async (dispatch) => {
 
 		// const { token } = response.data;
 
+		success({
+			title: "Success",
+			msg: response.data.message,
+		});
+
 		localStorage.setItem("token", token);
-	} catch (error) {
+	} catch (err) {
 		dispatch(
 			resendAdminOtpFailure(
-				error.response?.data?.message || "Failed to resend OTP"
+				err.response?.data?.message || "Failed to resend OTP"
 			)
 		);
+
+		error({
+			title: "Error",
+			msg: err.response ? err.response.data.message : err.message,
+		});
 	}
 };

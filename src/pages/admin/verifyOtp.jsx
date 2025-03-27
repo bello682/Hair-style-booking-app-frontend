@@ -71,7 +71,7 @@
 // export default AdminVerifyOtp;
 
 // src/pages/AdminVerifyOtp.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -88,9 +88,12 @@ const AdminVerifyOtp = () => {
 		(state) => state.verifyAdminOtpReducerState
 	);
 
-	const handleNavigate = () => {
-		navigate("/admin-login");
-	};
+	useEffect(() => {
+		if (successMessage) {
+			// navigate("/admin-dashboard");
+			navigate("/admin-login");
+		}
+	}, [successMessage, navigate]);
 
 	return (
 		<div className="login-form">
@@ -105,7 +108,6 @@ const AdminVerifyOtp = () => {
 							})}
 							onSubmit={(values) => {
 								dispatch(adminVerifyOtp(values.otp));
-								handleNavigate();
 							}}
 						>
 							{({

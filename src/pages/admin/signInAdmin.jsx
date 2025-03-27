@@ -60,7 +60,7 @@
 // };
 
 // export default AdminLoginForm;
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -74,7 +74,15 @@ import { Link } from "react-router-dom";
 const AdminLoginForm = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { loading, error } = useSelector((state) => state.loginOutReducerState);
+	const { loading, error, user } = useSelector(
+		(state) => state.loginOutReducerState
+	);
+
+	useEffect(() => {
+		if (user) {
+			navigate("/admin-dashboard");
+		}
+	}, [user, navigate]);
 
 	const loginValidationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -86,7 +94,6 @@ const AdminLoginForm = () => {
 	const handleSubmit = (values, { setSubmitting }) => {
 		dispatch(loginAdminAction(values.email, values.password));
 		setSubmitting(false);
-		navigate("/admin-dashboard");
 	};
 
 	return (

@@ -2,6 +2,7 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/userActionType/verifyUserOtpActionTypes";
 import { getStoredDeviceId } from "../../../utils/authStorage";
+import { success, error } from "../../../notifivations/notification";
 
 const BASE_URL =
 	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
@@ -35,10 +36,20 @@ export const verifyOtp = (otp) => async (dispatch) => {
 		localStorage.setItem("isVerified", response?.data?.user?.isVerified);
 
 		dispatch({ type: actionTypes.VERIFY_OTP_SUCCESS, payload: response.data });
-	} catch (error) {
+
+		success({
+			title: "Success",
+			msg: response.data.message,
+		});
+	} catch (err) {
 		dispatch({
 			type: actionTypes.VERIFY_OTP_FAILURE,
-			payload: error.response ? error.response.data : "Network Error",
+			payload: err.response ? err.response.data : err.message,
+		});
+
+		error({
+			title: "Error",
+			msg: err.response ? err.response.data.message : err.message,
 		});
 	}
 };

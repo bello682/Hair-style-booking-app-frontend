@@ -1,6 +1,7 @@
 // src/store/actions/verifyOtpAction.js
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/adminVerifyOtpActionType";
+import { success, error } from "./../../../notifivations/notification";
 
 const BASE_URL =
 	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
@@ -34,12 +35,19 @@ export const adminVerifyOtp = (otp) => async (dispatch) => {
 			payload: { message, token: newToken },
 		});
 
-		console.log("OTP accepted", response.data);
-	} catch (error) {
-		console.error("Error verifying OTP:", error);
+		success({
+			title: "Success",
+			msg: response.data.message,
+		});
+	} catch (err) {
 		dispatch({
 			type: actionTypes.ADMIN_VERIFY_OTP_FAILURE,
-			payload: error.response ? error.response.data : "Network Error",
+			payload: err.response ? err.response.data : err.message,
+		});
+
+		error({
+			title: "Error",
+			msg: err.response ? err.response.data.message : err.message,
 		});
 	}
 };

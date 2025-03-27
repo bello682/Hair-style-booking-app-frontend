@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as actionTypes from "../../actionType/userActionType/resendOtp";
 import { getStoredDeviceId } from "../../../utils/authStorage";
+import { error, success } from "../../../notifivations/notification";
 
 const BASE_URL =
 	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
@@ -37,9 +38,19 @@ export const resendOtp = (email) => async (dispatch) => {
 		localStorage.removeItem("refreshToken");
 		localStorage.setItem("accessToken", accessToken);
 		localStorage.setItem("refreshToken", refreshToken);
-	} catch (error) {
+
+		success({
+			title: "Success",
+			msg: response.data.message,
+		});
+	} catch (err) {
 		dispatch(
-			resendOtpFailure(error.response?.data?.message || "Failed to resend OTP")
+			resendOtpFailure(err.response?.data?.message || "Failed to resend OTP")
 		);
+
+		error({
+			title: "Error",
+			msg: err.response ? err.response.data.message : err.message,
+		});
 	}
 };

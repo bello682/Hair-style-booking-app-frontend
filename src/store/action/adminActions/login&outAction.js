@@ -1,6 +1,7 @@
 // adminActions.js
 import axios from "axios";
 import * as actionTypes from "../../actionType/adminActionTypes/login&outActionType";
+import { success, error } from "../../../notifivations/notification";
 
 const BASE_URL =
 	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
@@ -22,10 +23,20 @@ export const loginAdminAction = (email, password) => async (dispatch) => {
 
 		localStorage.setItem("token", token); // Save token for authenticated requests
 		localStorage.setItem("adminId", user?.id); // Save adminId for authenticated use
-	} catch (error) {
+
+		success({
+			title: "Success",
+			msg: response.data.message,
+		});
+	} catch (err) {
 		dispatch({
 			type: actionTypes.ADMIN_LOGIN_FAILURE,
-			payload: error.response?.data?.message || "Login failed",
+			payload: err.response?.data?.message || err.message,
+		});
+
+		error({
+			title: "Error",
+			msg: err.response ? err.response.data.message : err.message,
 		});
 	}
 };
