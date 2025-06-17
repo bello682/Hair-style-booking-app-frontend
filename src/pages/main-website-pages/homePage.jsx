@@ -105,6 +105,7 @@ const HomePage = () => {
 	const dispatch = useDispatch();
 	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
 	const isVerified = userDataFectched?.user?.isVerified;
+	const isVerified2 = localStorage.getItem("isVerified");
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
@@ -164,7 +165,7 @@ const HomePage = () => {
 
 						<div className="btn_box">
 							<a href="/tour-our-services">Take a Tour</a>
-							{isVerified ? (
+							{isVerified2 ? (
 								<a href="/booking/hair-service">Book Now</a>
 							) : (
 								<a href="/user-signUp">Sign-Up</a>

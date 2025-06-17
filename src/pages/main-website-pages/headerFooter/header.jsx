@@ -151,7 +151,7 @@ const HeaderPage = () => {
 
 	return (
 		<div className="main_body">
-			{/* <header className="home-header-user">
+			<header className="home-header-user">
 				<a href="/">
 					<img src={logo} alt="Logo" className="Logo_Style" />
 				</a>
@@ -232,7 +232,7 @@ const HeaderPage = () => {
 						</button>
 					)}
 				</nav>
-			</header> */}
+			</header>
 		</div>
 	);
 };
