@@ -527,6 +527,7 @@ body {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 	.home_View {
 		flex-direction: column; /* Stack items vertically */
+		height: 80vh;
 	}
 
 	.slider_general_wrapper {
