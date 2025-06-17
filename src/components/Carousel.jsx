@@ -26,9 +26,9 @@ const Carousel = ({ images, className_custom }) => {
 		<div className={`carousel-container ${className_custom}`}>
 			<div
 				className="carousel-slider"
-				style={{
-					transform: `translateX(-${currentIndex * 100}%)`,
-				}}
+				// style={{
+				// 	transform: `translateX(-${currentIndex * 100}%)`,
+				// }}
 			>
 				{images.map((image, index) => (
 					<div key={index} className="carousel-slide">
