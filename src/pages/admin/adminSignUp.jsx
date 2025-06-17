@@ -191,7 +191,7 @@ const AdminSignUp = () => {
 			<div className="container">
 				<div className="main">
 					<div className="content">
-						<h2>Admin Register</h2>
+						<h2>Create Your Admin Account</h2>
 						<Formik
 							initialValues={{
 								fullName: "",

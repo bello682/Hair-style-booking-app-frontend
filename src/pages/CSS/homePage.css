@@ -386,12 +386,19 @@ body {
 	width: 100%;
 }
 
+.slider_general_wrapper {
+	position: relative;
+}
+
 .home_hover {
 	position: absolute;
 	top: 0;
-	right: 30px;
-	width: 750px;
+	right: 0;
+	width: 100%;
 	height: 100%;
+	/* right: 30px; */
+	/* width: 750px; */
+	/* height: 100%; */
 	background: transparent;
 	transition: 3s;
 	animation: manipActiveHover 0.1s forwards;
@@ -411,6 +418,7 @@ body {
 	right: 0;
 	width: 100%;
 	height: 100%;
+	/* height: fit-content; */
 	background: #081b29;
 	animation: showRight 1s ease forwards;
 	animation-delay: 3s;
@@ -451,9 +459,9 @@ body {
 		flex-direction: column;
 		background-color: #081b29;
 		position: absolute;
-		top: 100px;
+		top: 0px;
 		right: 0px;
-		width: 350px;
+		width: 100%;
 		height: 100vh;
 		border-radius: 8px;
 		padding: 10px;
@@ -468,10 +476,6 @@ body {
 		justify-content: center;
 		margin: auto;
 		padding-top: 1rem !important;
-	}
-
-	.slider_general_wrapper {
-		/* border: 5px solid white; */
 	}
 
 	.home_content h1 {
@@ -495,7 +499,18 @@ body {
 	}
 
 	.home_hover {
-		display: none;
+		position: absolute;
+		top: 100px;
+		right: 0;
+		/* width: 750px; */
+		width: 100%;
+		/* height: 65%; */
+		height: 80%;
+		background: transparent;
+		transition: 3s;
+		animation: manipActiveHover 0.1s forwards;
+		animation-delay: 4s;
+		pointer-events: none;
 	}
 
 	.openFaBars {
@@ -541,7 +556,8 @@ body {
 		right: 0;
 		/* width: 750px; */
 		width: 100%;
-		height: 65%;
+		/* height: 65%; */
+		height: 80%;
 		background: transparent;
 		transition: 3s;
 		animation: manipActiveHover 0.1s forwards;

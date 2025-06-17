@@ -132,7 +132,7 @@ const UserSignUp = () => {
 			<div className="container">
 				<div className="main">
 					<div className="content">
-						<h2>User Register</h2>
+						<h2>Welcome Aboard</h2>
 						<Formik
 							initialValues={{
 								fullName: "",

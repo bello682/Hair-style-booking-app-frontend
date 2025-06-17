@@ -102,8 +102,8 @@ const HomePage = () => {
 					{/* slider */}
 					<div className="slider_general_wrapper">
 						<Carousel images={images} className_custom={""} />
+						<span className="home_hover"></span>
 					</div>
-					{/* <span className="home_hover"></span> */}
 				</section>
 			</div>
 		</div>
