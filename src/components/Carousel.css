@@ -7,8 +7,8 @@
 	justify-content: center;
 	align-items: center;
 	/* border: 2rem solid #081b29; */
-	border: 2rem solid white;
-	border-radius: 5rem;
+	/* border: 2rem solid white; */
+	/* border-radius: 5rem; */
 }
 
 .carousel-slider {
@@ -17,7 +17,7 @@
 	width: 500px;
 	height: 500px;
 	border-radius: 5rem;
-	border: 5px solid red;
+	/* border: 5px solid red; */
 }
 
 .carousel-slide {
