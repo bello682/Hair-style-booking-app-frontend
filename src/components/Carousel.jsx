@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Carousel.css";
 
-const Carousel = ({ images, imageSize, height }) => {
+const Carousel = ({ images, className_custom }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	useEffect(() => {
@@ -23,10 +23,12 @@ const Carousel = ({ images, imageSize, height }) => {
 	};
 
 	return (
-		<div className="carousel-container" style={{ width: imageSize, height }}>
+		<div className={`carousel-container ${className_custom}`}>
 			<div
 				className="carousel-slider"
-				style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+				style={{
+					transform: `translateX(-${currentIndex * 100}%)`,
+				}}
 			>
 				{images.map((image, index) => (
 					<div key={index} className="carousel-slide">

@@ -18,21 +18,6 @@ body {
 	background: #081b29;
 }
 
-/* .home-header-user {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: transparent;
-	color: #fff;
-	padding: 15px 70px;
-	z-index: 1000;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.3s ease;
-	} */
-
 .home-header-user {
 	position: fixed;
 	top: 0;
@@ -185,8 +170,9 @@ body {
 	align-items: center;
 	justify-content: center;
 	margin: auto;
-	padding: 0 10%;
+	padding: 0px 6% 0 6%;
 	gap: 2rem;
+	width: 100%;
 }
 
 .home_view_sub {
@@ -447,11 +433,12 @@ body {
 
 @media screen and (max-width: 768px) {
 	/* Stack Carousel above the text on mobile */
-	/* .home_View {
-		flex-direction: column-reverse; 
+	.home_View {
+		flex-direction: column-reverse;
 		align-items: center;
 		text-align: center;
-	} */
+		padding-top: 350px;
+	}
 
 	.main_body_home {
 		margin: 0;
@@ -480,11 +467,11 @@ body {
 		flex-direction: column;
 		justify-content: center;
 		margin: auto;
-		padding-top: 5rem !important;
+		padding-top: 1rem !important;
 	}
 
-	.home_content {
-		/* padding-top: 12rem; */
+	.slider_general_wrapper {
+		/* border: 5px solid white; */
 	}
 
 	.home_content h1 {
@@ -507,10 +494,6 @@ body {
 		width: 60%;
 	}
 
-	.slider_general_wrapper {
-		display: none;
-	}
-
 	.home_hover {
 		display: none;
 	}
@@ -526,14 +509,15 @@ body {
 /* For tablet screens (768px - 1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 	.home_View {
-		flex-direction: column; /* Stack items vertically */
+		flex-direction: column;
 		height: 80vh;
+		padding-top: 350px;
 	}
 
 	.slider_general_wrapper {
 		order: -1; /* Move carousel to the top */
-		margin-bottom: 2rem; /* Add spacing between carousel and content*/
-		margin-top: 5rem !important;
+		/* margin-bottom: 2rem;
+		margin-top: 5rem !important; */
 	}
 
 	.home_view_sub {
@@ -542,13 +526,13 @@ body {
 	}
 
 	.home_content {
-		max-width: 80%; /* Adjust content width */
-		margin: 0 auto; /* Center content */
+		max-width: 80%;
+		margin: 0 auto;
 	}
 
 	.btn_box {
-		justify-content: center; /* Center buttons */
-		gap: 1rem; /* Add spacing between buttons */
+		justify-content: center;
+		gap: 1rem;
 	}
 
 	.home_hover {

@@ -4,7 +4,13 @@ import Testing from "../testing";
 
 const WelcomePage = () => {
 	return (
-		<div style={{ background: "#081b29", height: "100vh" }}>
+		<div
+			style={{
+				background: "#081b29",
+				height: "100vh",
+				width: "100%",
+			}}
+		>
 			<HomePage />
 		</div>
 	);
