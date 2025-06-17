@@ -188,7 +188,7 @@ const HomePage = () => {
 					<div className="slider_general_wrapper">
 						<Carousel images={images} imageSize="100%" height="100%" />
 					</div>
-					{/* <span className="home_hover"></span> */}
+					<span className="home_hover"></span>
 				</section>
 			</div>
 		</div>
