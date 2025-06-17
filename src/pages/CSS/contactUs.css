@@ -117,12 +117,38 @@
 	color: #28a745;
 }
 
-@media (max-width: 768px) {
-	.hero-section {
-		margin-top: 25rem;
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.hero-text,
+	.hero-form {
+		width: 100%;
+		padding: 2rem;
+		display: flex;
 		flex-direction: column;
+		justify-content: center;
+	}
+
+	.hero-section {
+		margin-top: 10rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		width: 100%;
 		height: auto;
+		background: transparent;
+		padding: 0px 40px 40px 40px;
+	}
+}
+
+@media (max-width: 768px) {
+	.hero-section {
+		margin: 30px auto auto auto;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: auto;
+		background: transparent;
 	}
 
 	.hero-text,
