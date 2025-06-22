@@ -97,7 +97,7 @@ const BookingForm = () => {
 	return (
 		<>
 			<div className="h1_title_booking">
-				<h1>Fill in your Booking Information</h1>
+				<h1 className="">Fill in your Booking Information</h1>
 				<NotificationList />
 			</div>
 			<div className="booking-container">

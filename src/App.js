@@ -1,58 +1,3 @@
-// import "./App.css";
-// import {
-// 	BrowserRouter as Router,
-// 	Routes,
-// 	Route,
-// 	Navigate,
-// } from "react-router-dom";
-// import UserSignUp from "./pages/users/signUp";
-// import VerifyOtp from "./pages/users/verificationUserOtp";
-// import RefreshTokenHandler from "./pages/users/refreshTokenAuth";
-// import BookingForm from "./pages/users/bookingRequest";
-// import AdminSignUp from "./pages/admin/adminSignUp";
-// import AdminVerifyOtp from "./pages/admin/verifyOtp";
-// import AdminResendOtpPage from "./pages/admin/resendOtp";
-// import AdminLoginForm from "./pages/admin/signInAdmin";
-// import WelcomePage from "./pages/main-website-pages/welcomePage";
-// import HeaderPage from "./pages/main-website-pages/headerFooter/header";
-// import ResendOtpPage from "./pages/users/resendOtp";
-// import Admin_App_Layout from "./pages/admin/adminPages/Admin-Export-App";
-
-// function App() {
-// 	return (
-// 		<>
-// 			<div className="App">
-// 				<HeaderPage />
-// 				<Router>
-// 					<Routes>
-// 						{/** USER SIDE NAVIGATION */}
-// 						<Route path="/" element={<WelcomePage />} />
-// 						<Route path="/user-signUp" element={<UserSignUp />} />
-// 						<Route path="/verify-otp" element={<VerifyOtp />} />
-// 						<Route path="/resend-otp" element={<ResendOtpPage />} />
-// 						<Route path="/booking/hair-service" element={<BookingForm />} />
-// 						{/* <Route path="/refresh-token" element={<RefreshTokenHandler />} /> */}
-
-// 						{/** ADMIN SIDE NAVIGATION */}
-// 						<Route path="/admin-register" element={<AdminSignUp />} />
-// 						<Route path="/admin-verification" element={<AdminVerifyOtp />} />
-// 						<Route path="/admin-Resend-otp" element={<AdminResendOtpPage />} />
-// 						<Route path="/admin-login" element={<AdminLoginForm />} />
-// 						<Route path="/admin-dashboard" element={<Admin_App_Layout />} />
-
-// 						<Route path="*" element={<div>404 - Page not found</div>} />
-// 					</Routes>
-// 				</Router>
-// 			</div>
-// 		</>
-// 	);
-// }
-
-// export default App;
-
-//
-
-// import "./App.css";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -89,11 +34,25 @@ import ContactUsPage from "./pages/main-website-pages/contactUs";
 import UserReceiptBooked from "./pages/users/userReceiptBooked";
 import UserProfileDataTableStored from "./pages/users/dashboard/userProfileDatas";
 import DashboardLayout from "./pages/users/dashboard/dashboardComponent/dashboardLayoutView";
+import NotFound from "./pages/Error/notFound";
+import User_Dashboard_Layout from "./pages/users/dashboard/LAYOUTS/user_dashboard_layout";
 
 function App() {
 	const location = useLocation();
 
 	const isAdminPath = location.pathname.includes("/admin");
+	const isVerifiedUser = localStorage.getItem("isVerified");
+
+	// this is to check if the user is registered on the database
+	const welcomePageUser = isVerifiedUser ? (
+		// assumed user dashboard
+		<DashboardLayout />
+	) : (
+		// welcome page
+		<WelcomePage />
+	);
+
+	// console.log(isVerifiedUser);
 
 	return (
 		<>
@@ -101,19 +60,36 @@ function App() {
 				{!isAdminPath && <HeaderPage />}
 				<Routes>
 					{/* USER ROUTES */}
-					<Route path="/" element={<WelcomePage />} />
+					{/* <Route path="/" element={<WelcomePage />} /> */}
+					<Route path="/" element={welcomePageUser} />
 					<Route path="/user-signUp" element={<UserSignUp />} />
 					<Route path="/verify-otp" element={<VerifyOtp />} />
 					<Route path="/resend-otp" element={<ResendOtpPage />} />
 					<Route path="/booking/hair-service" element={<BookingForm />} />
 					<Route path="/tour-our-services" element={<GetAllImagesTour />} />
 					<Route path="/contact-us" element={<ContactUsPage />} />
-					<Route path="/user-dashboard" element={<DashboardLayout />} />
 					<Route path="/booking-receipt" element={<UserReceiptBooked />} />
+
+					{/* USER DASHBOARDS LINKS */}
+
+					<Route index path="/user-dashboard" element={<DashboardLayout />} />
+					<Route path="/analytics" element={<h1>Analytics</h1>} />
+					<Route path="/reports" element={<h1>Reports</h1>} />
+					<Route path="/customers" element={<h1>Customers</h1>} />
+					<Route path="/new-customer" element={<h1>New Customer</h1>} />
+					<Route
+						path="/verified-customers"
+						element={<h1>Verified Customers</h1>}
+					/>
+					<Route path="/products" element={<h1>Products</h1>} />
+					<Route path="/new-product" element={<h1>New Product</h1>} />
+					<Route path="/inventory" element={<h1>Inventory</h1>} />
+					<Route path="/settings" element={<h1>Settings</h1>} />
 					<Route
 						path="/User-profiler-page"
 						element={<UserProfileDataTableStored />}
 					/>
+					{/* USER DASHBOARDS LINKS ENDS HERE */}
 
 					{/* USER GET NOTIFICATIONS FROM ADMIN */}
 					<Route path="/GET-NOTIFICATION" element={<NotificationList />} />
@@ -152,7 +128,7 @@ function App() {
 						element={<AdminNotificationList />}
 					/>
 
-					<Route path="*" element={<div>404 - Page not found</div>} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</div>
 

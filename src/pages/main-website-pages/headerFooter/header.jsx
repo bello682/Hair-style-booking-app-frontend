@@ -14,6 +14,16 @@ const HeaderPage = () => {
 	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
 	const isVerified = userDataFectched?.user?.isVerified;
 
+	const isVerified2 = localStorage.getItem("isVerified");
+
+	useEffect(() => {
+		if (!isVerified) {
+			localStorage.removeItem("isVerified");
+
+			// if the user is verified and exist in the database then the accesstoken, refreshtoken, device ID and user ID should be removed from the local storage but if they re then the local storage should have them.
+		}
+	}, [isVerified]);
+
 	useEffect(() => {
 		dispatch(getUserDataStart());
 	}, []);
@@ -73,7 +83,8 @@ const HeaderPage = () => {
 						</button>
 					) : (
 						<button className="button_Header">
-							<a href="/user-signUp">Sign-Up</a>
+							{/* <a href="/user-signUp">Sign-Up</a> */}
+							<a href="/user-signUp">Join Us</a>
 						</button>
 					)}
 				</nav>

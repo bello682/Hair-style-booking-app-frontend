@@ -58,18 +58,18 @@
 @media screen and (max-width: 768px) {
 }
 
+@media (max-width: 480px) {
+	.carousel-container {
+		/* margin-top: 10rem; */
+		border-radius: 10rem;
+	}
+
+	.carousel_wrapper {
+		display: none;
+	}
+}
 @media (max-width: 768px) {
 	/* Hide Carousel entirely on very small screens */
-	@media (max-width: 480px) {
-		.carousel-container {
-			margin-top: 10rem;
-			border-radius: 10rem;
-		}
-
-		.carousel_wrapper {
-			display: none;
-		}
-	}
 
 	.carousel-container {
 		/* border-radius: 10rem; */
@@ -81,7 +81,6 @@
 		transition: transform 2s ease-in-out;
 		width: 350px;
 		height: 350px;
-		/* border-radius: 10rem; */
 	}
 }
 

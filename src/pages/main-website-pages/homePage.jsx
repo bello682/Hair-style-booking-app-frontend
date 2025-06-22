@@ -19,8 +19,16 @@ const HomePage = () => {
 	const navigation = useNavigate();
 	const dispatch = useDispatch();
 	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
-	const isVerified = userDataFectched?.user?.isVerified;
-	const isVerified2 = localStorage.getItem("isVerified");
+	const isVerified2 = userDataFectched?.user?.isVerified;
+	const isVerified = localStorage.getItem("isVerified");
+
+	useEffect(() => {
+		if (!isVerified2) {
+			localStorage.removeItem("isVerified");
+
+			// if the user is verified and exist in the database then the accesstoken, refreshtoken, device ID and user ID should be removed from the local storage but if they re then the local storage should have them.
+		}
+	}, [isVerified2]);
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
@@ -69,11 +77,11 @@ const HomePage = () => {
 
 	return (
 		<div className="main_body_home">
-			<div>
+			<div className="margin_container">
 				<section className="home_View">
 					<div className="home_view_sub">
 						<div className="home_content">
-							<h1>{text.name}</h1>
+							<h1 className="title-list-name">{text.name}</h1>
 							<h3>{text.plug}</h3>
 							<p>{text.description}</p>
 						</div>
@@ -83,18 +91,30 @@ const HomePage = () => {
 							{isVerified2 ? (
 								<a href="/booking/hair-service">Book Now</a>
 							) : (
-								<a href="/user-signUp">Sign-Up</a>
+								<a href="/user-signUp">Get Started</a>
 							)}
 						</div>
 
 						<div className="home_sci">
-							<a href="">
+							<a
+								href="https://www.facebook.com"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<FaFacebookF className="facebook" />
 							</a>
-							<a href="">
+							<a
+								href="https://twitter.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<FaTwitter className="twitter" />
 							</a>
-							<a href="">
+							<a
+								href="https://www.linkedin.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<BsLinkedin className="linkedin" />
 							</a>
 						</div>

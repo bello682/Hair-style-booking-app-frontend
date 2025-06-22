@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-// import {
-// 	AiOutlineMenu,
-// 	AiOutlineClose,
-// 	AiFillHome,
-// 	AiFillSetting,
 import { FaArrowRight } from "react-icons/fa6";
 import { AiFillFileText } from "react-icons/ai";
 import { MdDashboard } from "react-icons/md";
@@ -12,8 +7,7 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { FaMessage } from "react-icons/fa6";
 import { MdOutlinePayment } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
-// import { LuPackageOpenQuantity } from "react-icons/lu";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
 	const navigationItems = [
@@ -63,15 +57,19 @@ const Sidebar = () => {
 					{navigationItems.map((item, index) => (
 						<li
 							key={index}
-							className="flex gap-4 items-center text-lg hover:bg-gray-300 p-2 rounded-md cursor-pointer"
+							className="flex gap-4 items-center text-lg hover:bg-[#0d0d0d] p-2 rounded-md cursor-pointer"
 						>
-							{/* <Link
+							<Link
+								navbarLinks
+								key={item.name}
 								to={item.path}
-								className="flex items-center gap-4 p-2 text-gray-300 hover:bg-gray-700 "
-							> */}
-							{item.icon}
-							<span className={`${nav ? "hidden" : "flex"}`}>{item.name}</span>
-							{/* </Link> */}
+								className="flex items-center gap-4 p-2 text-white"
+							>
+								{item.icon}
+								<span className={`${nav ? "hidden" : "flex"}`}>
+									{item.name}
+								</span>
+							</Link>
 						</li>
 					))}
 				</ul>
