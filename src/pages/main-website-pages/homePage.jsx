@@ -9,7 +9,7 @@ import image3 from "../../../src/asset/images/image 3.jpg";
 import image4 from "../../../src/asset/images/images 4.jpg";
 import image5 from "../../../src/asset/images/image 5.jpg";
 import Carousel from "../../components/Carousel";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserDataStart } from "../../store/action/userActions/get UserDataActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -87,11 +87,11 @@ const HomePage = () => {
 						</div>
 
 						<div className="btn_box">
-							<a href="/tour-our-services">Take a Tour</a>
+							<Link to="/tour-our-services">Take a Tour</Link>
 							{isVerified2 ? (
-								<a href="/booking/hair-service">Book Now</a>
+								<Link to="/user-dashboard">Book Now</Link>
 							) : (
-								<a href="/user-signUp">Get Started</a>
+								<Link to="/user-signUp">Get Started</Link>
 							)}
 						</div>
 

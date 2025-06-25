@@ -101,7 +101,7 @@ const UserProfileDataTableStored = () => {
 
 	if (loading) {
 		return (
-			<div style={{ textAlign: "center", marginTop: "5rem" }}>
+			<div className="h-[100vh] items-center  justify-center flex flex-col m-auto ">
 				<Loader />
 				<p>Loading.........</p>
 			</div>
@@ -110,7 +110,7 @@ const UserProfileDataTableStored = () => {
 
 	if (error) {
 		return (
-			<div style={{ textAlign: "center", marginTop: "6rem" }}>
+			<div className="h-[100vh] items-center  justify-center flex flex-col m-auto gap-2">
 				<IoMdInformationCircle size={60} color="#fff" />
 				<p>Error: {error}</p>
 			</div>

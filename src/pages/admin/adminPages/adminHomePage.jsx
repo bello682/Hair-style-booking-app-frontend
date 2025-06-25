@@ -19,6 +19,7 @@ import {
 	Line,
 } from "recharts";
 import "../../CSS/adminPages.css";
+import AllRequest from "./admin-actions-pages/allRequest";
 
 const AdminHomePage = () => {
 	const data = [
@@ -153,6 +154,8 @@ const AdminHomePage = () => {
 					</LineChart>
 				</ResponsiveContainer>
 			</div>
+
+			{/* <AllRequest /> */}
 		</main>
 	);
 };

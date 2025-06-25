@@ -95,7 +95,7 @@ const VerifyOtp = () => {
 	useEffect(() => {
 		// Navigate only if OTP verification is successful
 		if (successMessage) {
-			navigate("/booking/hair-service");
+			navigate("/user-dashboard/booking/hair-service");
 		}
 	}, [successMessage, navigate]);
 

@@ -4,12 +4,11 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
 	background: #081b29;
-	/* background: linear-gradient(135deg, #007bff, #6610f2); */
 	color: #fff;
-	padding: 20px;
+	/* padding: 20px; */
 	box-sizing: border-box;
+	width: 100%;
 }
 
 /* Title */

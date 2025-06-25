@@ -113,6 +113,7 @@ import { useNavigate } from "react-router-dom";
 import UserChat from "../../chat/conversationalChat/userChat";
 import "../CSS/testing.css";
 import bg from "../../asset/images/bg.png";
+import HeaderPage from "../main-website-pages/headerFooter/header";
 
 const UserSignUp = () => {
 	const dispatch = useDispatch();
@@ -128,116 +129,119 @@ const UserSignUp = () => {
 	}, [user, navigate]);
 
 	return (
-		<div className="login-form">
-			<div className="container">
-				<div className="main">
-					<div className="content">
-						<h2>Welcome Aboard</h2>
-						<Formik
-							initialValues={{
-								fullName: "",
-								email: "",
-								phoneNumber: "",
-							}}
-							validationSchema={Yup.object({
-								fullName: Yup.string().required("Full name is required"),
-								email: Yup.string()
-									.matches(
-										/^[a-zA-Z0-9._%+-]+@gmail\.com$/,
-										"Please enter a valid Gmail address (e.g., example@gmail.com)"
-									)
-									.required("Email is required"),
-								phoneNumber: Yup.string()
-									.matches(
-										/^(080|070|090|081)\d{8}$/,
-										"Phone number must start with 080, 070, 090, or 081 and be 11 digits long"
-									)
-									.required("Phone number is required"),
-							})}
-							onSubmit={(values) => {
-								dispatch(registerUser(values));
-							}}
-						>
-							{({
-								handleSubmit,
-								handleChange,
-								values,
-								errors,
-								touched,
-								handleBlur,
-							}) => (
-								<form onSubmit={handleSubmit}>
-									<div>
-										<label htmlFor="fullName">Full Name</label>
-										<input
-											id="fullName"
-											name="fullName"
-											type="text"
-											onChange={handleChange}
-											onBlur={handleBlur}
-											value={values.fullName}
-											placeholder="Full Name"
-											required
-										/>
-										{touched.fullName && errors.fullName && (
-											<div className="error">{errors.fullName}</div>
-										)}
-									</div>
-
-									<div>
-										<label htmlFor="email">Email</label>
-										<input
-											id="email"
-											name="email"
-											type="email"
-											onChange={handleChange}
-											onBlur={handleBlur}
-											value={values.email}
-											placeholder="Email"
-											required
-										/>
-										{touched.email && errors.email && (
-											<div className="error">{errors.email}</div>
-										)}
-									</div>
-
-									<div>
-										<label htmlFor="phoneNumber">Phone Number</label>
-										<input
-											id="phoneNumber"
-											name="phoneNumber"
-											type="text"
-											onChange={handleChange}
-											onBlur={handleBlur}
-											value={values.phoneNumber}
-											placeholder="Enter your (Whatsapp) Phone Number"
-											required
-										/>
-										{touched.phoneNumber && errors.phoneNumber && (
-											<div className="error">{errors.phoneNumber}</div>
-										)}
-									</div>
-
-									<button className="btn" type="submit" disabled={loading}>
-										{loading ? "Registering..." : "Register"}
-									</button>
-
-									{error && (
-										<div className="error">
-											{error.message || "An error occurred"}
+		<>
+			<HeaderPage />
+			<div className="login-form">
+				<div className="container">
+					<div className="main">
+						<div className="content">
+							<h2>Welcome Aboard</h2>
+							<Formik
+								initialValues={{
+									fullName: "",
+									email: "",
+									phoneNumber: "",
+								}}
+								validationSchema={Yup.object({
+									fullName: Yup.string().required("Full name is required"),
+									email: Yup.string()
+										.matches(
+											/^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+											"Please enter a valid Gmail address (e.g., example@gmail.com)"
+										)
+										.required("Email is required"),
+									phoneNumber: Yup.string()
+										.matches(
+											/^(080|070|090|081)\d{8}$/,
+											"Phone number must start with 080, 070, 090, or 081 and be 11 digits long"
+										)
+										.required("Phone number is required"),
+								})}
+								onSubmit={(values) => {
+									dispatch(registerUser(values));
+								}}
+							>
+								{({
+									handleSubmit,
+									handleChange,
+									values,
+									errors,
+									touched,
+									handleBlur,
+								}) => (
+									<form onSubmit={handleSubmit}>
+										<div>
+											<label htmlFor="fullName">Full Name</label>
+											<input
+												id="fullName"
+												name="fullName"
+												type="text"
+												onChange={handleChange}
+												onBlur={handleBlur}
+												value={values.fullName}
+												placeholder="Full Name"
+												required
+											/>
+											{touched.fullName && errors.fullName && (
+												<div className="error">{errors.fullName}</div>
+											)}
 										</div>
-									)}
-								</form>
-							)}
-						</Formik>
-					</div>
-					<div className="form-img">
-						<img src={bg} alt="Background" />
+
+										<div>
+											<label htmlFor="email">Email</label>
+											<input
+												id="email"
+												name="email"
+												type="email"
+												onChange={handleChange}
+												onBlur={handleBlur}
+												value={values.email}
+												placeholder="Email"
+												required
+											/>
+											{touched.email && errors.email && (
+												<div className="error">{errors.email}</div>
+											)}
+										</div>
+
+										<div>
+											<label htmlFor="phoneNumber">Phone Number</label>
+											<input
+												id="phoneNumber"
+												name="phoneNumber"
+												type="text"
+												onChange={handleChange}
+												onBlur={handleBlur}
+												value={values.phoneNumber}
+												placeholder="Enter your (Whatsapp) Phone Number"
+												required
+											/>
+											{touched.phoneNumber && errors.phoneNumber && (
+												<div className="error">{errors.phoneNumber}</div>
+											)}
+										</div>
+
+										<button className="btn" type="submit" disabled={loading}>
+											{loading ? "Registering..." : "Register"}
+										</button>
+
+										{error && (
+											<div className="error">
+												{error.message || "An error occurred"}
+											</div>
+										)}
+									</form>
+								)}
+							</Formik>
+						</div>
+						<div className="form-img">
+							<img src={bg} alt="Background" />
+						</div>
 					</div>
 				</div>
+				{/* <UserChat /> */}
 			</div>
-			{/* <UserChat /> */}
-		</div>
+		</>
 	);
 };
 

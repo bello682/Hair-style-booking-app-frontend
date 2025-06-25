@@ -68,7 +68,7 @@
 // };
 // export default AdminSideBar;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	BsCart3,
 	BsGrid1X2Fill,
@@ -80,11 +80,16 @@ import {
 	BsFillGearFill,
 	BsChevronDown,
 } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { FaRegMessage } from "react-icons/fa6";
+import { IoLogoDesignernews } from "react-icons/io5";
 import "../../CSS/adminPages.css";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import AdminLogout from "../logoutAdmin";
+import { fetchAllRequests } from "../../../store/action/adminActions/fetchAllBookingRequest";
 
 const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
+	const dispatch = useDispatch();
 	const [dropdowns, setDropdowns] = useState({
 		newRequests: false,
 		requests: false,
@@ -94,6 +99,35 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 		postAds: false,
 		editAds: false,
 	});
+
+	// ====================================== update count ==========================================
+	const { bookings, loading, error } = useSelector(
+		(state) => state.fetchBookings
+	);
+
+	const newRequestCount =
+		bookings?.users?.reduce((total, user) => {
+			if (!user.bookingRequests) return total;
+
+			const userNewRequests = user.bookingRequests.filter(
+				(req) => req.status === "pending" && req.isNewRequest === true
+			);
+
+			return total + userNewRequests.length;
+		}, 0) || 0;
+
+	// making sure to  always check for the count all the time if there is a new request so it will update the count
+	useEffect(() => {
+		dispatch(fetchAllRequests());
+
+		const interval = setInterval(() => {
+			dispatch(fetchAllRequests());
+		}, 10000); // every 10 seconds
+
+		return () => clearInterval(interval); // cleanup
+	}, [dispatch]);
+
+	// ====================================== update count ==========================================
 
 	const navigate = useNavigate();
 
@@ -111,11 +145,16 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 	return (
 		<aside
 			id="sidebar"
-			className={openSidebarToggle ? "sidebar-responsive" : ""}
+			className={`
+				${openSidebarToggle ? "sidebar-responsive" : ""}
+			
+			`}
 		>
-			<div className="sidebar-title">
+			<div className="sidebar-title lg:w-[15rem]">
 				<div className="sidebar-brand">
-					<BsCart3 className="icon_header" /> SHOP
+					<IoLogoDesignernews className="icon_header text-[#d50000] text-[30px]" />
+					<p>Esta</p>
+					<p>blish Brand</p>
 				</div>
 				<span className="icon close_icon" onClick={OpenSidebar}>
 					X
@@ -124,9 +163,14 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 
 			<ul className="sidebar-list">
 				<li className="sidebar-list-item">
-					<a href="">
-						<BsGrid1X2Fill className="icon" /> Dashboard
-					</a>
+					<NavLink
+						to="/admin-dashboard"
+						// className=" "
+						className={`flex items-center w-full gap-7 ${({ isActive }) =>
+							isActive ? "activeLink" : ""}`}
+					>
+						<BsGrid1X2Fill className="" /> Dashboard
+					</NavLink>
 				</li>
 
 				<li className="sidebar-list-item">
@@ -143,10 +187,13 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					</div>
 					{dropdowns.newRequests && (
 						<ul className="dropdown-list">
-							<li className="dropdown-list-item">
-								<a href="/admin-new-requests" target="blank_">
+							<li className="dropdown-list-item flex justify-center items-center gap-5 text-white">
+								<NavLink to="/admin-dashboard/admin-new-requests">
 									Request
-								</a>
+								</NavLink>
+								<div className="message-chat-count bg-[red] text-white rounded-md px-2">
+									<p className="text-white font-extrabold">{newRequestCount}</p>
+								</div>
 							</li>
 						</ul>
 					)}
@@ -165,34 +212,34 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.requests && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="/admin-all-requests" target="blank_">
+								<NavLink to="/admin-dashboard/admin-all-requests">
 									All Requests
-								</a>
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-accepted-requests" target="blank_">
+								<NavLink to="/admin-dashboard/admin-accepted-requests">
 									Accepted Requests
-								</a>
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-completed-requests" target="blank_">
+								<NavLink to="/admin-dashboard/admin-completed-requests">
 									Completed Requests
-								</a>
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-rejected-requests" target="blank_">
+								<NavLink to="/admin-dashboard/admin-rejected-requests">
 									Rejected Requests
-								</a>
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-pending-requests" target="blank_">
+								<NavLink to="/admin-dashboard/admin-pending-requests">
 									Pending Requests
-								</a>
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-deleted-requests" target="blank_">
+								<NavLink to="/admin-dashboard/admin-deleted-requests">
 									Deleted Requests
-								</a>
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -211,13 +258,19 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.uploads && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="/admin-male-uploads">Male Image</a>
+								<NavLink to="/admin-dashboard/admin-male-uploads">
+									Male Image
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-female-uploads">Female Image</a>
+								<NavLink to="/admin-dashboard/admin-female-uploads">
+									Female Image
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-others-uploads">Others</a>
+								<NavLink to="/admin-dashboard/admin-others-uploads">
+									Others
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -238,19 +291,37 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.notifications && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="/admin-create-notification">Create Message</a>
+								<NavLink to="/admin-dashboard/admin-create-notification">
+									Create Message
+								</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="/admin-get-notification">View Message</a>
+								<NavLink to="/admin-dashboard/admin-get-notification">
+									View Message
+								</NavLink>
 							</li>
 						</ul>
 					)}
 				</li>
 
 				<li className="sidebar-list-item">
-					<a href="">
+					<NavLink
+						to="/admin-dashboard/"
+						className="flex items-center w-full gap-7 "
+					>
 						<BsListCheck className="icon" /> Inventory
-					</a>
+					</NavLink>
+				</li>
+				<li className="sidebar-list-item flex justify-between items-center">
+					<NavLink
+						to="/admin-dashboard/"
+						className="flex items-center w-full gap-7 "
+					>
+						<FaRegMessage className="icon" /> Messages
+					</NavLink>
+					<div className="message-chat-count bg-[red] text-white rounded-full px-2">
+						<p className="text-white font-extrabold">20</p>
+					</div>
 				</li>
 
 				<li className="sidebar-list-item">
@@ -268,10 +339,10 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.deleteUser && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="">Deletes</a>
+								<NavLink to="/admin-dashboard/">Deletes</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Rejected Request</a>
+								<NavLink to="/admin-dashboard/">Rejected Request</NavLink>
 							</li>
 						</ul>
 					)}
@@ -290,19 +361,19 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.postAds && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="">Accepted Request</a>
+								<NavLink to="/admin-dashboard/">Accepted Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Rejected Request</a>
+								<NavLink to="/admin-dashboard/">Rejected Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Completed Request</a>
+								<NavLink to="/admin-dashboard/">Completed Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Deleted Request</a>
+								<NavLink to="/admin-dashboard/">Deleted Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Pending Request</a>
+								<NavLink to="/admin-dashboard/">Pending Request</NavLink>
 							</li>
 						</ul>
 					)}
@@ -321,19 +392,19 @@ const AdminSideBar = ({ openSidebarToggle, OpenSidebar }) => {
 					{dropdowns.editAds && (
 						<ul className="dropdown-list">
 							<li className="dropdown-list-item">
-								<a href="">Accepted Request</a>
+								<NavLink to="/admin-dashboard/">Accepted Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Rejected Request</a>
+								<NavLink to="/admin-dashboard/">Rejected Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Completed Request</a>
+								<NavLink to="/admin-dashboard/">Completed Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Deleted Request</a>
+								<NavLink to="/admin-dashboard/">Deleted Request</NavLink>
 							</li>
 							<li className="dropdown-list-item">
-								<a href="">Pending Request</a>
+								<NavLink to="/admin-dashboard/">Pending Request</NavLink>
 							</li>
 						</ul>
 					)}

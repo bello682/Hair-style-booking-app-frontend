@@ -4,6 +4,7 @@ import { fetchAllRequests } from "./../../../../store/action/adminActions/fetchA
 import moment from "moment";
 import DataTable from "react-data-table-component";
 import "../../../CSS/adminPages.css"; // Add CSS for your custom modal here
+import Loader from "../../../../components/loader";
 
 const AllRequest = () => {
 	const dispatch = useDispatch();
@@ -100,7 +101,12 @@ const AllRequest = () => {
 	];
 
 	if (loading) {
-		return <p>Loading...</p>;
+		return (
+			<div className="h-[100vh] items-center justify-center flex flex-col m-auto">
+				<Loader />
+				<p>Loading...</p>
+			</div>
+		);
 	}
 
 	if (error) {

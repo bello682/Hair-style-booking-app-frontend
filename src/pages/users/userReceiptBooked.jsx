@@ -12,6 +12,8 @@ const UserReceiptBooked = () => {
 	} = useSelector((state) => state.bookingRquestState);
 	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
 
+	console.log(booking?.booked);
+
 	return (
 		<div>
 			<BookingReceipt

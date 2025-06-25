@@ -17,7 +17,7 @@ const AdminHeader = ({ OpenSidebar }) => {
 			<div className="header-left">
 				<BsSearch className="icon" />
 			</div>
-			<div className="header-right">
+			<div className="header-right flex justify-center items-center gap-4">
 				<BsFillBellFill className="icon" />
 				<BsFillEnvelopeFill className="icon" />
 				<BsPersonCircle className="icon" />

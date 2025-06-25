@@ -171,7 +171,7 @@ const OthersUploads = () => {
 	};
 
 	return (
-		<div className="others_upload_wrapper">
+		<div className="others_upload_wrapper ">
 			<div className="others-uploads">
 				<h2>Upload Other Hairstyles</h2>
 				<Formik

@@ -128,7 +128,7 @@ const GetAllImagesTour = () => {
 	};
 
 	return (
-		<div className="container--Images--upload">
+		<div className="container--Images--upload pt-16">
 			<h2>Image Gallery</h2>
 
 			{/* Dropdown for filter selection */}

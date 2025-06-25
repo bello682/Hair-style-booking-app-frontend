@@ -8,6 +8,7 @@
 
 body {
 	font-family: Arial, sans-serif;
+	/* remind me to return the color back if there is any issue with my text colors generally */
 	color: #ededed;
 	background: #081b29;
 }
@@ -56,6 +57,33 @@ body {
 
 .Logo_Style:hover {
 	transform: scale(1.05);
+}
+
+.profile__pics_name {
+	width: 2.8rem;
+	height: 2.8rem;
+	border-radius: 50%;
+	overflow: hidden;
+	cursor: pointer;
+	background: #00abf0;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid white;
+}
+
+.profile__pics_name p {
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.profile__pics_name:hover img,
+.profile__pics_name:hover img {
+	transform: scale(1.05);
+	transition: transform 0.3s ease;
 }
 
 .navbar {

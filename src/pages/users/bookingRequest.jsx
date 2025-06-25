@@ -95,7 +95,7 @@ const BookingForm = () => {
 	}, [booking]);
 
 	return (
-		<>
+		<div className="booking_form_container_style_all">
 			<div className="h1_title_booking">
 				<h1 className="">Fill in your Booking Information</h1>
 				<NotificationList />
@@ -269,7 +269,7 @@ const BookingForm = () => {
 					/>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 
