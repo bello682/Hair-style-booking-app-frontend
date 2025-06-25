@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../CSS/userDashboardLayoutView.css";
 
 const Sales_analysis_blog_right = () => {
 	return (

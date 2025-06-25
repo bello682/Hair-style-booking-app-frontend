@@ -694,7 +694,7 @@
 		display: none;
 		/* 	.user_dashboard_sidebar .sideBar .message_counts  */
 	}
-	*/ .user_dashboard_sidebar .sideBar a {
+	.user_dashboard_sidebar .sideBar a {
 		width: 5.6rem;
 	}
 
