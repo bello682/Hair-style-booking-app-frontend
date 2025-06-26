@@ -230,12 +230,12 @@ const Dashboard_SideBar = () => {
 						<h3>Add Products</h3>
 					</NavLink>
 					<NavLink
-						to="/user-dashboard/Logout"
+						to="/user-dashboard/deactivating-user-account?"
 						className={({ isActive }) => (isActive ? "active" : "")}
 						onClick={() => setIsMenuOpen(false)}
 					>
 						<MdLogout className="span_icon_dash naterial_icons_sharp_grid_view" />
-						<h3>Logout</h3>
+						<h3>Deactivate Account</h3>
 					</NavLink>
 				</div>
 			</aside>

@@ -4,8 +4,12 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import profileImage from "../../../../asset/images/cut3.jpg";
 import "../../../CSS/userDashboardLayoutView.css";
 import Recent_Single_Update from "../dashboardComponent/recent_Single_Update";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDataStart } from "../../../../store/action/userActions/get UserDataActions";
 
 const DashBoard_Right_Blog = ({ onClose }) => {
+	const dispatch = useDispatch();
+	const { userDataFectched } = useSelector((state) => state.getUserDataFetch);
 	const sidebarRef = useRef(null);
 
 	useEffect(() => {
@@ -20,6 +24,16 @@ const DashBoard_Right_Blog = ({ onClose }) => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [onClose]);
+
+	useEffect(() => {
+		dispatch(getUserDataStart());
+	}, [dispatch]);
+
+	// Example to get the first letter of the first name and capitalize it
+	let FULL_NAME = userDataFectched?.user?.fullName;
+	let firstLetter = FULL_NAME
+		? FULL_NAME.trim().split(" ")[0][0].toUpperCase()
+		: "";
 
 	return (
 		<div ref={sidebarRef}>
@@ -41,8 +55,12 @@ const DashBoard_Right_Blog = ({ onClose }) => {
 							</p>
 							<smal className="text_muted">Admin</smal>
 						</div>
-						<div className="profile_photo_pics profile_photo">
+						{/* <div className="profile_photo_pics profile_photo">
 							<img src={profileImage} alt="" />
+						</div> */}
+						<div className="profile_photo_pics_name_ profile__pics_name">
+							{/* <img src={ImageProfile} alt="profile" /> */}
+							<p>{firstLetter}</p>
 						</div>
 					</div>
 

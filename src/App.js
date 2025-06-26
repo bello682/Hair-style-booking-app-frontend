@@ -189,6 +189,7 @@ import DashBoard_main from "./pages/users/dashboard/LAYOUTS/main_user_dashboard"
 import UserProfileDataTableStored from "./pages/users/dashboard/userProfileDatas";
 import AdminDashboardLayoutWrapperShowExport from "./pages/admin/adminPages/adminDashboardLayoutWrapper";
 import AdminHomePage from "./pages/admin/adminPages/adminHomePage";
+import DeleteUserAccount from "./pages/users/dashboard/LAYOUTS/deleteUserAccount";
 
 function App() {
 	const location = useLocation();
@@ -234,12 +235,10 @@ function App() {
 							element={<UserProfileDataTableStored />}
 						/>
 						<Route path="booking/hair-service" element={<BookingForm />} />
-						{/* <Route
-							path="booking/hair-service"
-							element={
-								<h1 className="text-zinc-950 text-5xl">/user-dashboard</h1>
-							}
-						/> */}
+						<Route
+							path="deactivating-user-account?"
+							element={<DeleteUserAccount />}
+						/>
 						<Route
 							path="Customers"
 							element={<h1 className="text-zinc-950 text-5xl">Customers</h1>}

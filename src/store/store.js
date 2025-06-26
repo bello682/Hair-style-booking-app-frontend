@@ -25,6 +25,7 @@ import {
 } from "./reducers/adminReducers/imagesUploadReducer";
 import getUserDataReducerState from "./reducers/userReducers/getUserDataReducers";
 import { getUserProfileReducer } from "./reducers/userReducers/getUserProfileReducers";
+import { deleteUserAccountReducer } from "./reducers/userReducers/deleteUserAccountReducer";
 
 const reducer = combineReducers({
 	registrationReducerUser: userReducer,
@@ -48,6 +49,7 @@ const reducer = combineReducers({
 	getallUploadStateReducer: getAllUploadsReducer,
 	getUserDataFetch: getUserDataReducerState,
 	getUserProfileState: getUserProfileReducer,
+	deleteUserAccountState: deleteUserAccountReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));
