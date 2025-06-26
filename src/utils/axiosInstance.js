@@ -64,8 +64,7 @@ import { refreshTokenAction } from "./../store/action/userActions/refreshTokenAu
 import { getStoredAccessToken } from "./authStorage";
 
 const BASE_URL =
-	// process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
-	"http://localhost:8006/Api_Url";
+	process.env.REACT_APP_BASE_URL || "http://localhost:8006/Api_Url";
 // Set up base instance
 const axiosInstance = axios.create({
 	baseURL: BASE_URL,
