@@ -149,15 +149,15 @@ const VerifyOtp = () => {
 											}}
 										>
 											<span>Did not get an otp? </span>{" "}
-											<Link
-												to="/resend-otp"
+											<div
+												onClick={() => navigate("/resend-otp")}
 												style={{
 													cursor: "pointer",
 													color: "red",
 												}}
 											>
 												Resend
-											</Link>
+											</div>
 										</div>
 									</div>
 

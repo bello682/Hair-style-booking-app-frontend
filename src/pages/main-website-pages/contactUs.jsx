@@ -15,6 +15,7 @@ const ContactUsPage = () => {
 	});
 
 	const [status, setStatus] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -26,6 +27,7 @@ const ContactUsPage = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true); // Start loading
 
 		try {
 			const response = await axios.post(
@@ -122,6 +124,7 @@ const ContactUsPage = () => {
 								value={formData.fullName}
 								onChange={handleChange}
 								required
+								className="text-black"
 							/>
 							<input
 								type="email"
@@ -130,6 +133,7 @@ const ContactUsPage = () => {
 								value={formData.email}
 								onChange={handleChange}
 								required
+								className="text-black"
 							/>
 							<textarea
 								name="message"
@@ -137,8 +141,11 @@ const ContactUsPage = () => {
 								value={formData.message}
 								onChange={handleChange}
 								required
+								className="text-black"
 							/>
-							<button type="submit">Send Message</button>
+							<button type="submit">
+								{loading ? "Sending..." : "Send Message"}
+							</button>
 						</form>
 						{status && <p className="status-message">{status}</p>}
 					</div>
